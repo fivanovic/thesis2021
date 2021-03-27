@@ -10,10 +10,10 @@ try:
     GPIO.setup(RECEIVE, GPIO.IN)
 
     GPIO.output(TRIGGER, GPIO.LOW)
-    print "Settling Sensor"
+    print("Settling Sensor")
     time.sleep(2)
 
-    print "Firing"
+    print("Firing")
     GPIO.output(TRIGGER, GPIO.HIGH)
     time.sleep(0.00001)
     GPIO.output(TRIGGER, GPIO.LOW)
