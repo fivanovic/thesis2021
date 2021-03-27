@@ -6,6 +6,7 @@ try:
 
     TRIGGER = 7
     RECEIVE = 11
+    
     GPIO.setup(TRIGGER, GPIO.OUT)
     GPIO.setup(RECEIVE, GPIO.IN)
 
@@ -17,8 +18,11 @@ try:
     GPIO.output(TRIGGER, GPIO.HIGH)
     time.sleep(0.00001)
     GPIO.output(TRIGGER, GPIO.LOW)
-
+    
+    print(GPIO.input(RECEIVE))
+    
     if GPIO.input(RECEIVE)==1:
+        print(GPIO.input(RECEIVE))
         print("Success!")
 
 finally:
