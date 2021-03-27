@@ -2,7 +2,7 @@
 import time
 import RPi.GPIO as GPIO
 try:
-    GPIO.setmode(GPIO.Board)
+    GPIO.setmode(GPIO.BOARD)
 
     TRIGGER = 7
     RECEIVE = 11
