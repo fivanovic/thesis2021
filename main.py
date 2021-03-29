@@ -6,14 +6,17 @@ try:
     GPIO.setmode(GPIO.BOARD)
 
     TRIGGER = 7
-    RECEIVE = 11
+    RECEIVE1 = 11
+    RECEIVE2 = 12
+    RECEIVE3 = 13
+    RECEIVE4 = 15
     t1 = 0
     t2 = 0
     duration = 0
     ss = 343
         
     GPIO.setup(TRIGGER, GPIO.OUT)
-    GPIO.setup(RECEIVE, GPIO.IN)
+    GPIO.setup(RECEIVE1, GPIO.IN)
         
     GPIO.output(TRIGGER, GPIO.LOW)
     print("Settling Sensor")
@@ -27,9 +30,9 @@ try:
         #time.sleep(0.01)
         #print(GPIO.input(RECEIVE))
             
-        while GPIO.input(RECEIVE)==0:
+        while GPIO.input(RECEIVE1)==0:
             t1 = time.time()
-        while GPIO.input(RECEIVE)==1:
+        while GPIO.input(RECEIVE1)==1:
             t2 = time.time()
             
         duration = t2 - t1
