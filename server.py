@@ -22,8 +22,7 @@ def handle_client(conn, addr):
             if msg == DISCONNECT_MSG:
                 connected = False
             print(f"{addr} {msg}")
-        if FLASH == 1:
-            conn.send("test".encode(FORMAT))
+        
 
 def start():
     server.listen()
@@ -37,5 +36,6 @@ print(f"SERVER: started on {ip}")
 start()
 while True:
     FLASH = 1
+    conn.send("test".encode(FORMAT))
     time.sleep(1)
     FLASH = 0
