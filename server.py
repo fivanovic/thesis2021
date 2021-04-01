@@ -2,7 +2,7 @@ import socket
 
 ip = "192.168.1.233"
 #start server
-serv = socket.socket(socket.AF-INET, socket.SOCK_STREAM)
+serv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serv.bind((ip, 8080))
 serv.listen(5)
 print("SERVER: started")
