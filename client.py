@@ -14,7 +14,7 @@ msg = "I AM CLIENT"
 client.send(msg.encode())
 
 #receieve and print
-from_server = client.recv(4096.decode())
+from_server = client.recv(4096).decode()
 print("RECEIEVED :" + from_server)
 
 #exit
