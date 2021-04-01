@@ -1,6 +1,8 @@
 import socket
+import time
+import threading
 
-ip = "192.168.1.233"
+ip = "socket.gethostbyname(socket.gethostname())"
 #start server
 serv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serv.bind((ip, 8080))
@@ -22,6 +24,7 @@ while True:
         #send message back to client
         msg = "I AM SERVER"
         conn.send(msg.encode())
+        time.sleep(0.5)
 
     #close connection and exit
     conn.close()
