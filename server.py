@@ -2,7 +2,7 @@ import socket
 import time
 import threading
 
-ip = "socket.gethostbyname(socket.gethostname())"
+ip = socket.gethostbyname(socket.gethostname())
 #start server
 serv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serv.bind((ip, 8080))
