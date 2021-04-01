@@ -3,7 +3,7 @@ import time
 import threading
 
 HEADER = 64
-FLASH = "0"
+global FLASH = "0"
 FORMAT = 'utf-8'
 DISCONNECT_MSG = "Disconnected"
 CHECKER = "PING"
@@ -42,6 +42,6 @@ print(f"SERVER: started on {ip}")
 
 start()
 while True:
-    FLASH = "1"
+    global FLASH = "1"
     time.sleep(1)
-    FLASH = "0"
+    global FLASH = "0"
