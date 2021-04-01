@@ -1,4 +1,5 @@
 import socket
+import time
 
 HEADER = 64
 FORMAT = 'utf-8'
@@ -12,8 +13,15 @@ def send(msg):
     message = msg.encode(FORMAT)
     msg_length = len(message)
     send_length = str(msg_length).encode(FORMAT)
-    send_length += b' ' * (HEADER) - len(send_length))
+    send_length += b' ' * (HEADER - len(send_length))
     client.send(send_length)
     client.send(message)
 
-send("Hellow world!")
+
+send("Hello world!")
+while True:
+    PING = client.recv(2048)
+    if PING == 1:
+        print("Starting count...")
+        PING = 0
+    time.sleep(0.1)

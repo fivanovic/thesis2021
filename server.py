@@ -3,6 +3,7 @@ import time
 import threading
 
 HEADER = 64
+FLASH = 0
 FORMAT = 'utf-8'
 DISCONNECT_MSG = "Disconnected"
 ip = "192.168.1.233"
@@ -21,7 +22,8 @@ def handle_client(conn, addr):
             if msg == DISCONNECT_MSG:
                 connected = False
             print(f"{addr} {msg}")
-
+        if FLASH == 1:
+            conn.send(FLASH)
 
 def start():
     server.listen()
@@ -31,4 +33,9 @@ def start():
         thread.start()
         print(f"[Active Connections] {threading.activeCount() -1}")
 print(f"SERVER: started on {ip}")
+
 start()
+while True:
+    FLASH = 1
+    time.sleep(1)
+    FLASH = 0
