@@ -6,6 +6,7 @@ HEADER = 64
 FLASH = 0
 FORMAT = 'utf-8'
 DISCONNECT_MSG = "Disconnected"
+CHECKER = "PING"
 ip = "192.168.1.233"
 #start server
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -23,7 +24,10 @@ def handle_client(conn, addr):
             if msg == DISCONNECT_MSG:
                 connected = False
             print(f"{addr} {msg}")
-            
+
+            if msg == CHECKER:
+                conn.send(FLASH.encode(FORMAT))
+
             conn.send("test".encode(FORMAT))
 
 
@@ -39,6 +43,5 @@ print(f"SERVER: started on {ip}")
 start()
 while True:
     FLASH = 1
-
     time.sleep(1)
     FLASH = 0

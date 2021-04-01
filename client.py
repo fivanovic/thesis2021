@@ -18,8 +18,9 @@ def send(msg):
     client.send(message)
 
 
-send("Hello world!")
+#send("Hello world!")
 while True:
+    send("PING")
     print(client.recv(2048).decode(FORMAT))
     #if PING == 1:
         #print("Starting count...")
