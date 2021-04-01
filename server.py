@@ -20,7 +20,7 @@ def trigger():
     time.sleep(1)
 
 x = threading.Thread(target=trigger, args=())
-x.start()
+
 
 def handle_client(conn, addr):
     print(f"New Connection {addr} connected")
@@ -37,7 +37,7 @@ def handle_client(conn, addr):
 
             if msg == CHECKER:
                 conn.send(FLASH.encode(FORMAT))
-
+        time.sleep(1)
         #conn.send("test".encode(FORMAT))
 
 
@@ -51,3 +51,4 @@ def start():
 print(f"SERVER: started on {ip}")
 
 start()
+x.start()
