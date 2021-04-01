@@ -3,7 +3,7 @@ import time
 import threading
 
 HEADER = 64
-global FLASH = "0"
+global FLASH
 FORMAT = 'utf-8'
 DISCONNECT_MSG = "Disconnected"
 CHECKER = "PING"
