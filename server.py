@@ -42,6 +42,6 @@ print(f"SERVER: started on {ip}")
 
 start()
 while True:
-    global FLASH = "1"
+    FLASH = "1"
     time.sleep(1)
-    global FLASH = "0"
+    FLASH = "0"
