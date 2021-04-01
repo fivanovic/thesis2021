@@ -20,8 +20,8 @@ def send(msg):
 
 send("Hello world!")
 while True:
-    PING = client.recv(2048)
-    if PING == 1:
-        print("Starting count...")
-        PING = 0
+    print(client.recv(2048).decode(FORMAT))
+    #if PING == 1:
+        #print("Starting count...")
+        #PING = 0
     time.sleep(0.1)

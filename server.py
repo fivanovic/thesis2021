@@ -23,7 +23,7 @@ def handle_client(conn, addr):
                 connected = False
             print(f"{addr} {msg}")
         if FLASH == 1:
-            conn.send(FLASH)
+            conn.send("test".encode(FORMAT))
 
 def start():
     server.listen()
