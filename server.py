@@ -5,7 +5,7 @@ import threading
 HEADER = 64
 FORMAT = 'utf-8'
 DISCONNECT_MSG = "Disconnected"
-ip = socket.gethostbyname(socket.gethostname())
+ip = "192.168.1.233"
 #start server
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((ip, 8080))
