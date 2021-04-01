@@ -2,30 +2,32 @@ import socket
 import time
 import threading
 
+HEADER = 64
+FORMAT = 'utf-8'
+DISCONNECT_MSG = "Disconnected"
 ip = socket.gethostbyname(socket.gethostname())
 #start server
 serv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serv.bind((ip, 8080))
-serv.listen(5)
-print("SERVER: started")
 
-while True:
-    conn, addr = serv.accept()
-    from_client = ''
-    print("SERVER: connection to client established")
+def handle_client(conn, addr):
+    print(f"New Connection {addr} connected")
+    connected = True
+    while connected:
+        msg = conn.recv(HEADER).decode(FORMAT)
+        msg_length = int(msg_length)
+        msg = conn.recv(msg_length).decode(FORMAT)
+        if msg == DISCONNECT_MSG:
+            connected = False
+        print(f"{addr} {msg}")
 
+
+def start():
+    server.listen()
     while True:
-        #receieve data and print
-        data = conn.recv(4096).decode()
-        if not data: break
-        from_client += data
-        print("Received: " + from_client)
-
-        #send message back to client
-        msg = "I AM SERVER"
-        conn.send(msg.encode())
-        time.sleep(0.5)
-
-    #close connection and exit
-    conn.close()
-    break
+        conn, addr = server.accept()
+        thread = threading.Thread(target=handle_client, args=(conn, addr))
+        thread.start()
+        print(f"[Active Connections] {threading.activeCount() -1}")
+print(f"SERVER: started on {ip}")
+start()
