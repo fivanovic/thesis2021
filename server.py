@@ -26,9 +26,9 @@ def handle_client(conn, addr):
             print(f"{addr} {msg}")
 
             if msg == CHECKER:
-                conn.send(FLASH.encode(FORMAT))
+                conn.send(FLASH)
 
-            conn.send("test".encode(FORMAT))
+        #conn.send("test".encode(FORMAT))
 
 
 def start():
