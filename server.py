@@ -14,7 +14,7 @@ def handle_client(conn, addr):
     print(f"New Connection {addr} connected")
     connected = True
     while connected:
-        msg = conn.recv(HEADER).decode(FORMAT)
+        msg_length = conn.recv(HEADER).decode(FORMAT)
         if msg_length:
             msg_length = int(msg_length)
             msg = conn.recv(msg_length).decode(FORMAT)
