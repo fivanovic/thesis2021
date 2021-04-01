@@ -7,8 +7,8 @@ FORMAT = 'utf-8'
 DISCONNECT_MSG = "Disconnected"
 ip = socket.gethostbyname(socket.gethostname())
 #start server
-serv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-serv.bind((ip, 8080))
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.bind((ip, 8080))
 
 def handle_client(conn, addr):
     print(f"New Connection {addr} connected")
