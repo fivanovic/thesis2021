@@ -12,6 +12,16 @@ ip = "192.168.1.233"
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((ip, 8080))
 
+def trigger():
+    global FLASH
+    FLASH = "1"
+    time.sleep(1)
+    FLASH = "0"
+    time.sleep(1)
+
+x = threading.Thread(target=trigger, args=())
+x.start()
+
 def handle_client(conn, addr):
     print(f"New Connection {addr} connected")
     connected = True
@@ -37,11 +47,7 @@ def start():
         conn, addr = server.accept()
         thread = threading.Thread(target=handle_client, args=(conn, addr))
         thread.start()
-        print(f"[Active Connections] {threading.activeCount() -1}")
+        print(f"[Active Connections] {threading.activeCount() -2}")
 print(f"SERVER: started on {ip}")
 
 start()
-while True:
-    FLASH = "1"
-    time.sleep(1)
-    FLASH = "0"
