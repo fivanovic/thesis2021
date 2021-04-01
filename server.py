@@ -3,7 +3,7 @@ import time
 import threading
 
 HEADER = 64
-FLASH = 0
+FLASH = "0"
 FORMAT = 'utf-8'
 DISCONNECT_MSG = "Disconnected"
 CHECKER = "PING"
@@ -26,7 +26,7 @@ def handle_client(conn, addr):
             print(f"{addr} {msg}")
 
             if msg == CHECKER:
-                conn.send(FLASH)
+                conn.send(FLASH.encode(FORMAT))
 
         #conn.send("test".encode(FORMAT))
 
@@ -42,6 +42,6 @@ print(f"SERVER: started on {ip}")
 
 start()
 while True:
-    FLASH = 1
+    FLASH = "1"
     time.sleep(1)
-    FLASH = 0
+    FLASH = "0"
