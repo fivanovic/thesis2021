@@ -17,7 +17,7 @@ def send(msg):
     client.send(send_length)
     client.send(message)
 
-
+send("Hello!")
 #send("Hello world!")
 while True:
     print(client.recv(2048).decode(FORMAT))
