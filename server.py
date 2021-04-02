@@ -5,6 +5,7 @@ import threading
 HEADER = 64
 
 FLASH = "0"
+n = 0
 FORMAT = 'utf-8'
 DISCONNECT_MSG = "Disconnected"
 CHECKER = "PING"
@@ -59,10 +60,11 @@ def start():
     server.listen()
     while True:
         conn, addr = server.accept()
-        thread = threading.Thread(target=handle_client, args=(conn, addr), name=str(ip))
+        thread = threading.Thread(target=handle_client, args=(conn, addr), name=n))
         x = threading.Thread(target=trig, args=(conn, addr))
         x.start()
         thread.start()
+        n += 1
         print(f"[Active Connections] {threading.activeCount() -2}")
 
 print(f"SERVER: started on {ip}")
