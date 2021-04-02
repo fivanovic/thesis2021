@@ -39,7 +39,7 @@ def handle_client(conn, addr):
         msg_length = conn.recv(HEADER).decode(FORMAT)
         if msg_length:
             msg_length = int(msg_length)
-            print(threading.get_ident())
+            print(threading.getName())
             msg = conn.recv(msg_length).decode(FORMAT)
 
             if msg == DISCONNECT_MSG:
