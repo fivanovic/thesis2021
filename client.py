@@ -20,7 +20,11 @@ def send(msg):
 send("Hello!")
 #send("Hello world!")
 while True:
-    print(client.recv(2048).decode(FORMAT))
+    resp = (client.recv(2048).decode(FORMAT))
+    print(resp)
+
+    if resp == 1:
+        send("50")
 
     #if resp == 1:
         #send("CONF")
