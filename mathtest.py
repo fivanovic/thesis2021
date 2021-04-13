@@ -4,7 +4,8 @@ import sympy as sym
 from sympy.plotting import plot
 from sympy.plotting import plot_parametric
 import matplotlib
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
+import localization as lx
 
 Station1 = np.array((100,100))
 Station2 = np.array((100,0))
