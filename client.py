@@ -23,7 +23,7 @@ while True:
     print(resp)
 
     if resp == "1":
-        send("50")
+        send("s1 70.71")
         resp = 0
     #if resp == 1:
         #send("CONF")
