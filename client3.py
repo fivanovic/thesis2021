@@ -24,7 +24,7 @@ while True:
     print(resp)
 
     if resp == "1":
-        send("s2 70.71")
+        send("s3 70.71")
         resp = 0
     #if PING == 1:
         #print("Starting count...")
