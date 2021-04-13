@@ -57,11 +57,11 @@ def handle_client(conn, addr):
             msg = conn.recv(msg_length).decode(FORMAT)
             if msg == DISCONNECT_MSG:
                 connected = False
-            if thread.name == "Station1":
-                S1DIST = msg
+            if msg[:2] == "s1":
+                S1DIST = msg[3:]
                 print(f"Station 1 distance is {S1DIST}")
-            elif thread.name == "Station2":
-                S2DIST = msg
+            elif msg[:2] == "s2":
+                S2DIST = msg[3:]
                 print(f"Station 2 distance is {S2DIST}")
             elif thread.name == "Thread-3":
                 S3DIST = msg
@@ -92,7 +92,7 @@ def start():
             statnum+=1
             print(f"next station will be {statnum}")
             STATIONS.append(conn)
-            print(thread.name)
+            #print(thread.name)
             thread.start()
 
         print(f"[Active Connections] {threading.activeCount() -1}")
