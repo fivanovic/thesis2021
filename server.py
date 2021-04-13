@@ -5,7 +5,7 @@ import threading
 HEADER = 64
 
 FLASH = "0"
-THREADS = []
+Stations = []
 FORMAT = 'utf-8'
 DISCONNECT_MSG = "Disconnected"
 CHECKER = "PING"
@@ -29,7 +29,8 @@ def trig(conn, addr):
         #print(f"{FLASH}")
         time.sleep(1)
         FLASH = "1"
-        conn.send(FLASH.encode(FORMAT))
+        for i in Stations:
+            i.send(FLASH.encode(FORMAT))
         #print(f"{FLASH}")
         time.sleep(1)
 
@@ -75,20 +76,17 @@ def start():
     global thread
     server.listen()
     while True:
-        conn, addr = server.accept()
-        thread = threading.Thread(target=handle_client, args=(conn, addr))
-        x = threading.Thread(target=trig, args=(conn, addr))
-        x.start()
-        thread.start()
+        if (threading.activeCount() -1) ==2:
+            x = threading.Thread(target=trig, args=(conn, addr))
+            x.start()
+        else:
+            conn, addr = server.accept()
+            thread = threading.Thread(target=handle_client, args=(conn, addr))
+            thread.start()
+
         print(f"[Active Connections] {threading.activeCount() -2}")
-        #if (threading.activeCount() - 2) == 0:
-            #print("testing")
-            #time.sleep(1)
+
 print(f"SERVER: started on {ip}")
 
 
 start()
-
-while(True):
-    print("testing")
-    time.sleep(1)
