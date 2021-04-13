@@ -5,7 +5,8 @@ import math
 import numpy as np
 import sympy as sym
 import localization as lx
-
+import matplotlib.pyplot as plt 
+import pickle 
 
 Station1 = np.array((100,100))
 Station2 = np.array((100,0))
@@ -17,6 +18,8 @@ HEADER = 64
 StationNumber = 4
 statnum = 1
 
+xp = 0
+yp = 0 
 FLASH = "0"
 STATIONS = []
 FORMAT = 'utf-8'
@@ -45,14 +48,20 @@ def trig(conn, addr):
     global Station2
     global Station3
     global Station4
+    global xp
+    global yp 
     while True:
+        #Hits the trigger 
         FLASH = "1"
+        #Sends out the signal to each client 
         for i in STATIONS:
             i.send(FLASH.encode(FORMAT))
         #print(f"{FLASH}")
         time.sleep(1)
 
         FLASH = "0"
+        
+        #Multilateration from each received distance 
 
         P=lx.Project(mode='2D',solver='LSE')
 
@@ -68,13 +77,24 @@ def trig(conn, addr):
         device.add_measure('Station3',S3DIST)
         device.add_measure('Station4',S4DIST)
         P.solve()
-        print(device.loc)
+        finalloc = device.loc
+        print(finalloc)
+        xp = finalloc.x
+        yp = finalloc.y
+        zp = finalloc.z
+        print(xp)
+        print(yp)
+        print(zp)
+        coords = [xp,yp]
+        file = open("plotvals.txt","wb")
+        pickle.dump(coords,file)
+        file.close()
         time.sleep(1)
 
 
 
 
-#this function will handle each receiver pi or the central receiver pi depending on architecture
+#this function will handle each receiver pi, collecting received information and assigning it to the correct station 
 def handle_client(conn, addr):
     global FLASH
     global S1DIST
@@ -111,7 +131,7 @@ def handle_client(conn, addr):
         time.sleep(0.01)
         #conn.send("test".encode(FORMAT))
 
-
+#this is the main function, starting all necessary threads and listening for connections 
 def start():
     global thread
     global statnum
