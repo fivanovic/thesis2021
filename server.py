@@ -80,10 +80,15 @@ def start():
         x = threading.Thread(target=trig, args=(conn, addr))
         x.start()
         thread.start()
-        
         print(f"[Active Connections] {threading.activeCount() -2}")
-
+        #if (threading.activeCount() - 2) == 0:
+            #print("testing")
+            #time.sleep(1)
 print(f"SERVER: started on {ip}")
 
 
 start()
+
+while(True):
+    print("testing")
+    time.sleep(1)
