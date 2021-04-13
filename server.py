@@ -4,6 +4,9 @@ import threading
 
 HEADER = 64
 
+StationNumber = 2 
+statnum = 1
+
 FLASH = "0"
 STATIONS = []
 FORMAT = 'utf-8'
@@ -54,19 +57,19 @@ def handle_client(conn, addr):
             msg = conn.recv(msg_length).decode(FORMAT)
             if msg == DISCONNECT_MSG:
                 connected = False
-            if thread.name == "Thread-1":
+            if thread.name == "Station1":
                 S1DIST = msg
                 print(f"Station 1 distance is {S1DIST}")
-            elif thread.name == "Thread-2":
+            elif thread.name == "Station2":
                 S2DIST = msg
-                print(f"Station 2 distance is {S1DIST}")
+                print(f"Station 2 distance is {S2DIST}")
             elif thread.name == "Thread-3":
                 S3DIST = msg
             elif thread.name == "Thread-4":
                 S4DIST = msg
-            print(f"{addr} {msg}")
+            #print(f"{addr} {msg}")
 
-            print(f"Station 1 distance is {S1DIST}")
+            #print(f"Station 1 distance is {S1DIST}")
 
 
 
@@ -76,15 +79,20 @@ def handle_client(conn, addr):
 
 def start():
     global thread
+    global statnum
     server.listen()
     while True:
-        if (threading.activeCount() -1) ==2:
+        if (threading.activeCount() -1) == StationNumber:
             x = threading.Thread(target=trig, args=(conn, addr))
             x.start()
         else:
             conn, addr = server.accept()
             thread = threading.Thread(target=handle_client, args=(conn, addr))
+            thread.name = "Station" + str(statnum)
+            statnum+=1
+            print(f"next station will be {statnum}")
             STATIONS.append(conn)
+            print(thread.name)
             thread.start()
 
         print(f"[Active Connections] {threading.activeCount() -1}")
