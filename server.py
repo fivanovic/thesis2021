@@ -56,8 +56,10 @@ def handle_client(conn, addr):
                 connected = False
             if thread.name == "Thread-1":
                 S1DIST = msg
+                print(f"Station 1 distance is {S1DIST}")
             elif thread.name == "Thread-2":
                 S2DIST = msg
+                print(f"Station 2 distance is {S1DIST}")
             elif thread.name == "Thread-3":
                 S3DIST = msg
             elif thread.name == "Thread-4":
