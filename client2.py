@@ -23,7 +23,7 @@ while True:
     resp = (client.recv(2048).decode(FORMAT))
     print(resp)
 
-    if resp == 1:
+    if resp == "1":
         send("50")
         resp = 0
     #if PING == 1:
