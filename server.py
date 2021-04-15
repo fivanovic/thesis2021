@@ -70,6 +70,7 @@ try:
             #STATIONS[0].send(FLASH.encode(FORMAT))
 
             GPIO.output(TRIGGER, GPIO.HIGH)
+            STATIONS[0].send(FLASH.encode(FORMAT))
             pi1.gpio_trigger(11, 10, 1)
             #for i in STATIONS:
                 #i.send(FLASH.encode(FORMAT))

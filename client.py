@@ -42,9 +42,9 @@ try:
         #print(resp)
 
         if resp:
-            GPIO.output(TRIGGER, GPIO.HIGH)
-            time.sleep(0.00001)
-            GPIO.output(TRIGGER, GPIO.LOW)
+            #GPIO.output(TRIGGER, GPIO.HIGH)
+            #time.sleep(0.00001)
+            #GPIO.output(TRIGGER, GPIO.LOW)
             while GPIO.input(RECEIVE)==0:
                 t1 = time.time()
             while GPIO.input(RECEIVE)==1:
