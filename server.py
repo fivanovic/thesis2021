@@ -8,7 +8,7 @@ import localization as lx
 import matplotlib.pyplot as plt
 import pickle
 import RPi.GPIO as GPIO
-import pigpio
+
 
 try:
     GPIO.setmode(GPIO.BOARD)
@@ -41,7 +41,7 @@ try:
     S2DIST = "0"
     S3DIST = "0"
     S4DIST = "0"
-    pi1 = pigpio.pi('192.168.1.230')
+
     #start server
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((ip, 8080))
@@ -70,11 +70,9 @@ try:
             #STATIONS[0].send(FLASH.encode(FORMAT))
 
             GPIO.output(TRIGGER, GPIO.HIGH)
-
-            pi1.gpio_trigger(17, 10, 1)
-            STATIONS[0].send(FLASH.encode(FORMAT))
-            #for i in STATIONS:
-                #i.send(FLASH.encode(FORMAT))
+            #STATIONS[0].send(FLASH.encode(FORMAT))
+            for i in STATIONS:
+                i.send(FLASH.encode(FORMAT))
             #STATIONS[0].send(FLASH.encode(FORMAT))
             time.sleep(0.00001)
             GPIO.output(TRIGGER, GPIO.LOW)
@@ -166,7 +164,7 @@ try:
         global S4DIST
         server.listen()
         while True:
-            if (threading.activeCount() -2) == StationNumber:
+            if (threading.activeCount() -1) == StationNumber:
                 x = threading.Thread(target=trig, args=(conn, addr))
                 x.start()
 
