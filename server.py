@@ -70,7 +70,7 @@ try:
             GPIO.output(TRIGGER, GPIO.LOW)
             threadLock.release()
             #print(f"{FLASH}")
-            time.sleep(3)
+            time.sleep(1)
 
             FLASH = "0"
 
@@ -104,7 +104,7 @@ try:
             #file = open("plotvals.txt","wb")
             #pickle.dump(coords,file)
             #file.close()
-            time.sleep(5)
+            #time.sleep(5)
 
 
 
