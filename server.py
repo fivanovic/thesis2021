@@ -64,7 +64,6 @@ try:
             threadLock.acquire()
             #Hits the trigger
             FLASH = "1"
-
             #Sends out the signal to each client
             #for i in STATIONS:
                 #i.send(FLASH.encode(FORMAT))
@@ -77,12 +76,10 @@ try:
             #STATIONS[0].send(FLASH.encode(FORMAT))
             time.sleep(0.00001)
             GPIO.output(TRIGGER, GPIO.LOW)
-            threadLock.release()
+
             #print(f"{FLASH}")
             time.sleep(1)
-
             FLASH = "0"
-
             print(S1DIST)
 
             #Multilateration from each received distance
@@ -114,7 +111,7 @@ try:
             #pickle.dump(coords,file)
             #file.close()
             #time.sleep(5)
-
+            threadLock.release()
 
 
 
