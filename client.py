@@ -52,7 +52,7 @@ try:
         #print("PING")
 
         duration = t2 - t1
-        duration = suration -0.08 
+        duration = duration -0.08
         print("%f time taken" % duration)
 
         #print("%f distance" % dist)
