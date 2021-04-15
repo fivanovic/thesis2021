@@ -43,7 +43,6 @@ try:
 
         if resp == "1":
             GPIO.output(TRIGGER, GPIO.HIGH)
-            print("NOW")
             time.sleep(0.0001)
             GPIO.output(TRIGGER, GPIO.LOW)
             while GPIO.input(RECEIVE)==0:
@@ -58,12 +57,12 @@ try:
             #print("%f distance" % dist)
             if(duration >= 0.038):
                 dist = prevdist
-                #print("RESTORED TO PREV")
+                print("RESTORED TO PREV")
                 packet = "s1 " + str(dist)
                 send(packet)
             else:
                 dist = duration*ss
-                #print("%f distance" % dist)
+                print("%f distance" % dist)
                 packet = "s1 " + str(dist)
                 send(packet)
                 prevdist = dist
