@@ -1,14 +1,14 @@
 import socket
 import time
 import RPi.GPIO as GPIO
+import pigpio
 from Bluetin_Echo import Echo
-from hcsr04sensor import sensor
 
 try:
     GPIO.setmode(GPIO.BOARD)
 
-    TRIGGER = 8
-    RECEIVE = 7
+    TRIGGER = 11
+    RECEIVE = 13
 
     GPIO.setup(TRIGGER, GPIO.OUT)
     GPIO.setup(RECEIVE, GPIO.IN)
@@ -40,22 +40,37 @@ try:
     ##send("Hello world!")
     while True:
         resp = (client.recv(2048).decode(FORMAT))
-        print(resp)
 
-        if resp == "1":
-            x=sensor.Measurement
+        GPIO.output(TRIGGER, GPIO.HIGH)
+        time.sleep(0.00001)
+        GPIO.output(TRIGGER, GPIO.LOW)
 
-            result = x.basic_distance(TRIGGER,RECEIVE)
+        while GPIO.input(RECEIVE)==0:
+            t1 = time.time()
+        while GPIO.input(RECEIVE)==1:
+            t2 = time.time()
+        #print("PING")
+        t1 = float(resp)
+        duration = t2 - t1
 
-            dist = result*2
+        print("%f time taken" % duration)
+
+        #print("%f distance" % dist)
+        if(duration >= 0.038):
+            dist = prevdist
+            print("RESTORED TO PREV")
+            packet = "s1 " + str(dist)
+            send(packet)
+        else:
+            dist = duration*ss
             print("%f distance" % dist)
             packet = "s1 " + str(dist)
             send(packet)
             prevdist = dist
 
-            resp = 0
+        resp = 0
 
-        time.sleep(0.00001)
+        time.sleep(0.0000001)
 
 except KeyboardInterrupt:
     GPIO.cleanup()

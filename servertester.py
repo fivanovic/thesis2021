@@ -8,6 +8,8 @@ import localization as lx
 import matplotlib.pyplot as plt
 import pickle
 import RPi.GPIO as GPIO
+import os
+
 
 try:
     GPIO.setmode(GPIO.BOARD)
@@ -18,7 +20,7 @@ try:
     Station2 = np.array((100,0))
     Station3 = np.array((0,0))
     Station4 = np.array((0,100))
-
+    sendtime = 0
     HEADER = 64
 
     StationNumber = 1
@@ -40,6 +42,7 @@ try:
     S2DIST = "0"
     S3DIST = "0"
     S4DIST = "0"
+
     #start server
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((ip, 8080))
@@ -58,25 +61,24 @@ try:
         global xp
         global yp
         while True:
-            #threadLock.acquire()
+            threadLock.acquire()
             #Hits the trigger
             FLASH = "1"
-
             #Sends out the signal to each client
             #for i in STATIONS:
                 #i.send(FLASH.encode(FORMAT))
             #STATIONS[0].send(FLASH.encode(FORMAT))
 
             GPIO.output(TRIGGER, GPIO.HIGH)
-            STATIONS[0].send(FLASH.encode(FORMAT))
+            sendtime = time.time()
+            sendtime = str(sendtime)
             time.sleep(0.00001)
             GPIO.output(TRIGGER, GPIO.LOW)
-            #threadLock.release()
+            for i in STATIONS:
+                i.send(sendtime.encode(FORMAT))
             #print(f"{FLASH}")
             time.sleep(1)
-
             FLASH = "0"
-
             print(S1DIST)
 
             #Multilateration from each received distance
@@ -108,7 +110,7 @@ try:
             #pickle.dump(coords,file)
             #file.close()
             #time.sleep(5)
-
+            threadLock.release()
 
 
 
@@ -119,30 +121,10 @@ try:
         global S2DIST
         global S3DIST
         global S4DIST
-        global STATIONS
         global thread
-        global TRIGGER
         print(f"New Connection {addr} connected")
         connected = True
         while connected:
-            FLASH = "1"
-            threadLock.acquire()
-            #Sends out the signal to each client
-            #for i in STATIONS:
-                #i.send(FLASH.encode(FORMAT))
-            #STATIONS[0].send(FLASH.encode(FORMAT))
-
-            GPIO.output(TRIGGER, GPIO.HIGH)
-            STATIONS[0].send(FLASH.encode(FORMAT))
-            time.sleep(0.00001)
-            GPIO.output(TRIGGER, GPIO.LOW)
-
-            #print(f"{FLASH}")
-            time.sleep(1)
-            threadLock.release()
-            FLASH = "0"
-
-
             msg_length = conn.recv(HEADER).decode(FORMAT)
             if msg_length:
                 msg_length = int(msg_length)
@@ -162,11 +144,11 @@ try:
                     S4DIST = msg[3:]
                 #print(f"{addr} {msg}")
 
-                print(f"Station 1 distance is {S1DIST}")
+                #print(f"Station 1 distance is {S1DIST}")
 
 
 
-            time.sleep(0.00001)
+            time.sleep(0.01)
             #conn.send("test".encode(FORMAT))
 
     #this is the main function, starting all necessary threads and listening for connections
@@ -179,22 +161,26 @@ try:
         global S4DIST
         server.listen()
         while True:
+            if (threading.activeCount() -1) == StationNumber:
+                x = threading.Thread(target=trig, args=(conn, addr))
+                x.start()
 
-
-            conn, addr = server.accept()
-            thread = threading.Thread(target=handle_client, args=(conn, addr))
-            #thread.name = "Station" + str(statnum)
-            #statnum+=1
-            #print(f"next station will be {statnum}")
-            STATIONS.append(conn)
-            #print(thread.name)
-            thread.start()
+            else:
+                conn, addr = server.accept()
+                thread = threading.Thread(target=handle_client, args=(conn, addr))
+                #thread.name = "Station" + str(statnum)
+                #statnum+=1
+                #print(f"next station will be {statnum}")
+                STATIONS.append(conn)
+                #print(thread.name)
+                thread.start()
 
             print(f"[Active Connections] {threading.activeCount() -1}")
 
     print(f"SERVER: started on {ip}")
 
-
+    GPIO.output(TRIGGER, GPIO.LOW)
+    print("Settling Sensor")
     start()
 
 except KeyboardInterrupt:
