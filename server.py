@@ -43,7 +43,7 @@ try:
     #start server
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((ip, 8080))
-
+    threadLock = threading.Lock()
     #this will be the function that controls the triggering of the sent signal
     def trig(conn, addr):
         global FLASH
@@ -58,6 +58,7 @@ try:
         global xp
         global yp
         while True:
+            threadLock.acquire()
             #Hits the trigger
             FLASH = "1"
 
@@ -67,6 +68,7 @@ try:
             GPIO.output(TRIGGER, GPIO.HIGH)
             time.sleep(0.0001)
             GPIO.output(TRIGGER, GPIO.LOW)
+            threadLock.release()
             #print(f"{FLASH}")
             time.sleep(3)
 

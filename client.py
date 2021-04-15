@@ -52,7 +52,7 @@ try:
             #print("PING")
 
             duration = t2 - t1
-            #print("%f time taken" % duration)
+            print("%f time taken" % duration)
 
             #print("%f distance" % dist)
             if(duration >= 0.038):
