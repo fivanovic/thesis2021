@@ -160,7 +160,7 @@ try:
         server.listen()
         while True:
             if (threading.activeCount() -1) == StationNumber:
-                threadLock.acquire()
+                #threadLock.acquire()
                 #Hits the trigger
                 FLASH = "1"
 
@@ -173,7 +173,7 @@ try:
                 STATIONS[0].send(FLASH.encode(FORMAT))
                 time.sleep(0.00001)
                 GPIO.output(TRIGGER, GPIO.LOW)
-                threadLock.release()
+                #threadLock.release()
                 #print(f"{FLASH}")
                 time.sleep(0.1)
 
