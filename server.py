@@ -58,7 +58,7 @@ try:
         global xp
         global yp
         while True:
-            threadLock.acquire()
+            #threadLock.acquire()
             #Hits the trigger
             FLASH = "1"
 
@@ -70,7 +70,7 @@ try:
             GPIO.output(TRIGGER, GPIO.HIGH)
             time.sleep(0.00001)
             GPIO.output(TRIGGER, GPIO.LOW)
-            threadLock.release()
+            #threadLock.release()
             #print(f"{FLASH}")
             time.sleep(1)
 
