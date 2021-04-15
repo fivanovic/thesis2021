@@ -2,7 +2,7 @@ import socket
 import time
 import RPi.GPIO as GPIO
 from Bluetin_Echo import Echo
-from hcrs04sensor import sensor
+from hcsr04sensor import sensor
 
 try:
     GPIO.setmode(GPIO.BOARD)
