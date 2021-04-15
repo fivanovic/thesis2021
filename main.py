@@ -5,8 +5,8 @@ import RPi.GPIO as GPIO
 try:
     GPIO.setmode(GPIO.BOARD)
 
-    TRIGGER = 7
-    RECEIVE1 = 11
+    TRIGGER = 8
+    RECEIVE1 = 7
     RECEIVE2 = 12
     RECEIVE3 = 13
     RECEIVE4 = 15
@@ -17,11 +17,11 @@ try:
     duration3 = 0
     duration4 = 0
     ss = 343
-        
+
     GPIO.setup(TRIGGER, GPIO.OUT)
     GPIO.setup(RECEIVE1, GPIO.IN)
     GPIO.setup(RECEIVE2, GPIO.IN)
-        
+
     GPIO.output(TRIGGER, GPIO.LOW)
     print("Settling Sensor")
     time.sleep(2)
@@ -30,48 +30,36 @@ try:
         GPIO.output(TRIGGER, GPIO.HIGH)
         time.sleep(0.00001)
         GPIO.output(TRIGGER, GPIO.LOW)
-        
+
         #time.sleep(0.01)
         #print(GPIO.input(RECEIVE))
-            
+
         while GPIO.input(RECEIVE1)==0:
             t1 = time.time()
         while GPIO.input(RECEIVE1)==1:
             t2 = time.time()
-                
+
         duration1 = t2 - t1
         #print("%f" % duration1)
         dist1 = duration1*ss
         #print("%f" % dist1)
         time.sleep(0.5)
-        
+
         GPIO.output(TRIGGER, GPIO.HIGH)
         time.sleep(0.00001)
         GPIO.output(TRIGGER, GPIO.LOW)
-        
-        while GPIO.input(RECEIVE2)==0:
-            t1 = time.time()
-        while GPIO.input(RECEIVE2)==1:
-            t2 = time.time()
-            
-        duration2 = t2 - t1
-        #print("%f" % duration2)
-        dist2 = duration2*ss
-        #print("%f" % dist2)
-        
+
+
+
         if(duration1 >= 0.038):
             print("CLEAR STATION 1")
         else:
             print("PING STATION 1 at %.2f" % dist1)
-            
-        if(duration2 >= 0.038):
-            print("CLEAR STATION 2")
-        else:
-            print("PING STATION 2 at %.2f" %dist2)
-        time.sleep(2)
+
         
-        
-    
+
+
+
 except KeyboardInterrupt:
     GPIO.cleanup()
 
