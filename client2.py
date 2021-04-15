@@ -45,7 +45,7 @@ try:
             echo = Echo(TRIGGER,RECEIVE,ss)
             samples = 1
 
-            result = ech0.read('cm',samples)
+            result = echo.read('cm',samples)
 
             dist = result*2
             print("%f distance" % dist)
