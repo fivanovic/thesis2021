@@ -67,7 +67,7 @@ try:
             for i in STATIONS:
                 i.send(FLASH.encode(FORMAT))
             #print(f"{FLASH}")
-            time.sleep(1)
+            time.sleep(3)
 
             FLASH = "0"
 
@@ -101,7 +101,7 @@ try:
             #file = open("plotvals.txt","wb")
             #pickle.dump(coords,file)
             #file.close()
-            time.sleep(1)
+            time.sleep(3)
 
 
 
