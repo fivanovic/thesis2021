@@ -48,7 +48,7 @@ try:
     server.bind((ip, 8080))
     threadLock = threading.Lock()
     #this will be the function that controls the triggering of the sent signal
-    def trig(S):
+    def trig(St):
         global FLASH
         global S1DIST
         global S2DIST
@@ -72,7 +72,7 @@ try:
 
             GPIO.output(TRIGGER, GPIO.HIGH)
             #STATIONS[0].send(FLASH.encode(FORMAT))
-            for i in S:
+            for i in St:
                 i.send(FLASH.encode(FORMAT))
             #STATIONS[0].send(FLASH.encode(FORMAT))
             time.sleep(0.00001)
