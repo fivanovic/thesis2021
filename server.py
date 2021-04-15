@@ -61,15 +61,15 @@ try:
             threadLock.acquire()
             #Hits the trigger
             FLASH = "1"
-
+            GPIO.output(TRIGGER, GPIO.HIGH)
+            time.sleep(0.0001)
+            GPIO.output(TRIGGER, GPIO.LOW)
             #Sends out the signal to each client
             #for i in STATIONS:
                 #i.send(FLASH.encode(FORMAT))
             STATIONS[0].send(FLASH.encode(FORMAT))
 
-            GPIO.output(TRIGGER, GPIO.HIGH)
-            time.sleep(0.0001)
-            GPIO.output(TRIGGER, GPIO.LOW)
+
             threadLock.release()
             #print(f"{FLASH}")
             time.sleep(1)
