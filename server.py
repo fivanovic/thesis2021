@@ -68,6 +68,7 @@ try:
             STATIONS[0].send(FLASH.encode(FORMAT))
 
             GPIO.output(TRIGGER, GPIO.HIGH)
+            STATIONS[0].send(FLASH.encode(FORMAT))
             time.sleep(0.00001)
             GPIO.output(TRIGGER, GPIO.LOW)
             #threadLock.release()
