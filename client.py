@@ -1,6 +1,7 @@
 import socket
 import time
 import RPi.GPIO as GPIO
+import pigpio 
 from Bluetin_Echo import Echo
 
 try:
