@@ -10,7 +10,7 @@ try:
     TRIGGER = 11
     RECEIVE = 13
 
-    GPIO.ouput(TRIGGER, GPIO.OUT)
+    GPIO.output(TRIGGER, GPIO.OUT)
     GPIO.output(RECEIVE, GPIO.IN)
 
     t1 = 0
