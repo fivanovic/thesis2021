@@ -8,8 +8,8 @@ import localization as lx
 import matplotlib.pyplot as plt
 import pickle
 import RPi.GPIO as GPIO
-from multiprocessing import Process
 import os
+
 
 try:
     GPIO.setmode(GPIO.BOARD)
@@ -48,7 +48,7 @@ try:
     server.bind((ip, 8080))
     threadLock = threading.Lock()
     #this will be the function that controls the triggering of the sent signal
-    def trig(St):
+    def trig(conn, addr):
         global FLASH
         global S1DIST
         global S2DIST
@@ -72,7 +72,7 @@ try:
 
             GPIO.output(TRIGGER, GPIO.HIGH)
             #STATIONS[0].send(FLASH.encode(FORMAT))
-            for i in St:
+            for i in STATIONS:
                 i.send(FLASH.encode(FORMAT))
             #STATIONS[0].send(FLASH.encode(FORMAT))
             time.sleep(0.00001)
@@ -166,7 +166,7 @@ try:
         server.listen()
         while True:
             if (threading.activeCount() -1) == StationNumber:
-                x = threading.Thread(target=trig, args=(STATIONS))
+                x = threading.Thread(target=trig, args=(conn, addr))
                 x.start()
 
             else:
