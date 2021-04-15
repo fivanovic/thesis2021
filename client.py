@@ -42,29 +42,26 @@ try:
         print(resp)
 
         if resp == "1":
-            t1 = time.time()
-            if GPIO.input(RECEIVE)==1:
+            while GPIO.input(RECEIVE)==0:
+                t1 = time.time()
+            while GPIO.input(RECEIVE)==1:
                 t2 = time.time()
+                print("PING")
 
-                duration = t2 - t1
-                #print("%f" % duration1)
+            duration = t2 - t1
+            print("%f" % duration1)
 
-                #print("%f" % dist1)
-                if(duration >= 0.038):
-                    dist = prevdist
-                    packet = "s1 " + str(dist)
-                    send(packet)
-                else:
-                    dist = duration*ss
-                    packet = "s1 " + str(dist)
-                    send(packet)
-                    prevdist = dist
+            print("%f" % dist1)
+            if(duration >= 0.038):
+                dist = prevdist
+                packet = "s1 " + str(dist)
+                send(packet)
+            else:
+                dist = duration*ss
+                packet = "s1 " + str(dist)
+                send(packet)
+                prevdist = dist
 
-                resp = 0
+            resp = 0
 
         time.sleep(0.00001)
-except KeyboardInterrupt:
-    GPIO.cleanup()
-
-finally:
-    GPIO.cleanup()
