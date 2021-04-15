@@ -71,7 +71,7 @@ try:
 
             GPIO.output(TRIGGER, GPIO.HIGH)
             STATIONS[0].send(FLASH.encode(FORMAT))
-            pi1.gpio_trigger(11, 10, 1)
+            pi1.gpio_trigger(17, 10, 1)
             #for i in STATIONS:
                 #i.send(FLASH.encode(FORMAT))
             #STATIONS[0].send(FLASH.encode(FORMAT))
