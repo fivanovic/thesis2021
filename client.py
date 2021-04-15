@@ -39,11 +39,12 @@ try:
 
     ##send("Hello world!")
     while True:
-        resp = (client.recv(2048).decode(FORMAT))
-        time.sleep(0.08)
+        #resp = (client.recv(2048).decode(FORMAT))
+
         GPIO.output(TRIGGER, GPIO.HIGH)
         time.sleep(0.00001)
         GPIO.output(TRIGGER, GPIO.LOW)
+
         while GPIO.input(RECEIVE)==0:
             t1 = time.time()
         while GPIO.input(RECEIVE)==1:
@@ -51,6 +52,7 @@ try:
         #print("PING")
 
         duration = t2 - t1
+        duration = duration -0.08
         print("%f time taken" % duration)
 
         #print("%f distance" % dist)
