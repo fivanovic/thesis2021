@@ -40,7 +40,7 @@ try:
             t2 = time.time()
 
         duration1 = t2 - t1
-        #print("%f" % duration1)
+        print("%f" % duration1)
         dist1 = duration1*ss
         #print("%f" % dist1)
         time.sleep(0.5)
