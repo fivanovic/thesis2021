@@ -52,15 +52,17 @@ try:
             print("PING")
 
             duration = t2 - t1
-            print("%f" % duration)
+            print("%f time taken" % duration)
 
-            print("%f" % dist)
+            #print("%f distance" % dist)
             if(duration >= 0.038):
                 dist = prevdist
+                print("RESTORED TO PREV")
                 packet = "s1 " + str(dist)
                 send(packet)
             else:
                 dist = duration*ss
+                print("%f distance" % dist)
                 packet = "s1 " + str(dist)
                 send(packet)
                 prevdist = dist
