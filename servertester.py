@@ -190,7 +190,7 @@ try:
             #print(thread.name)
             thread.start()
 
-                print(f"[Active Connections] {threading.activeCount() -1}")
+            print(f"[Active Connections] {threading.activeCount() -1}")
 
     print(f"SERVER: started on {ip}")
 
