@@ -71,12 +71,12 @@ try:
 
             GPIO.output(TRIGGER, GPIO.HIGH)
             #STATIONS[0].send(FLASH.encode(FORMAT))
-            for i in STATIONS:
-                i.send(FLASH.encode(FORMAT))
+
             #STATIONS[0].send(FLASH.encode(FORMAT))
             time.sleep(0.00001)
             GPIO.output(TRIGGER, GPIO.LOW)
-
+            for i in STATIONS:
+                i.send(FLASH.encode(FORMAT))
             #print(f"{FLASH}")
             time.sleep(1)
             FLASH = "0"
