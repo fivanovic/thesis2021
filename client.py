@@ -40,7 +40,6 @@ try:
     ##send("Hello world!")
     while True:
         resp = (client.recv(2048).decode(FORMAT))
-        time.sleep(1)
         GPIO.output(TRIGGER, GPIO.HIGH)
         time.sleep(0.00001)
         GPIO.output(TRIGGER, GPIO.LOW)
