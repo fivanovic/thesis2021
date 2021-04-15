@@ -8,7 +8,7 @@ import localization as lx
 import matplotlib.pyplot as plt
 import pickle
 import RPi.GPIO as GPIO
-from Bluetin-Echo import Echo
+from Bluetin_Echo import Echo
 
 try:
     GPIO.setmode(GPIO.BOARD)
