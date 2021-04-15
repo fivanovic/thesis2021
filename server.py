@@ -60,7 +60,7 @@ try:
         global xp
         global yp
         while True:
-            #threadLock.acquire()
+            threadLock.acquire()
             #Hits the trigger
             FLASH = "1"
 
@@ -70,14 +70,15 @@ try:
             #STATIONS[0].send(FLASH.encode(FORMAT))
 
             GPIO.output(TRIGGER, GPIO.HIGH)
-            STATIONS[0].send(FLASH.encode(FORMAT))
+
             pi1.gpio_trigger(17, 10, 1)
+            STATIONS[0].send(FLASH.encode(FORMAT))
             #for i in STATIONS:
                 #i.send(FLASH.encode(FORMAT))
             #STATIONS[0].send(FLASH.encode(FORMAT))
             time.sleep(0.00001)
             GPIO.output(TRIGGER, GPIO.LOW)
-            #threadLock.release()
+            threadLock.release()
             #print(f"{FLASH}")
             time.sleep(1)
 
