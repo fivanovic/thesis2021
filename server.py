@@ -60,11 +60,12 @@ try:
         while True:
             #Hits the trigger
             FLASH = "1"
-            
+
             #Sends out the signal to each client
             for i in STATIONS:
                 i.send(FLASH.encode(FORMAT))
             GPIO.output(TRIGGER, GPIO.HIGH)
+            print("NOW")
             time.sleep(0.0001)
             GPIO.output(TRIGGER, GPIO.LOW)
             #print(f"{FLASH}")
@@ -72,7 +73,7 @@ try:
 
             FLASH = "0"
 
-            print(S1DIST)
+            #print(S1DIST)
 
             #Multilateration from each received distance
 
