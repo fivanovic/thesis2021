@@ -6,8 +6,8 @@ from Bluetin_Echo import Echo
 try:
     GPIO.setmode(GPIO.BOARD)
 
-    TRIGGER = 8
-    RECEIVE = 7
+    TRIGGER = 11
+    RECEIVE = 13
 
     GPIO.setup(TRIGGER, GPIO.OUT)
     GPIO.setup(RECEIVE, GPIO.IN)
