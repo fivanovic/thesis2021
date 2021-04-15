@@ -2,63 +2,70 @@ import socket
 import time
 import RPi.GPIO as GPIO
 
-GPIO.setmode(GPIO.BOARD)
 
-TRIGGER = 8
-RECEIVE = 7
+try:
+    GPIO.setmode(GPIO.BOARD)
 
-GPIO.setup(TRIGGER, GPIO.OUT)
-GPIO.setup(RECEIVE, GPIO.IN)
+    TRIGGER = 8
+    RECEIVE = 7
 
-t1 = 0
-t2 = 0
-duration = 0
-dist = 0
-prevdist = 0
-ss = 343
-packet = ""
+    GPIO.setup(TRIGGER, GPIO.OUT)
+    GPIO.setup(RECEIVE, GPIO.IN)
 
-HEADER = 64
-FORMAT = 'utf-8'
-DISCONNECT_MSG = "Disconnected"
-ip = "192.168.1.233"
+    t1 = 0
+    t2 = 0
+    duration = 0
+    dist = 0
+    prevdist = 0
+    ss = 343
+    packet = ""
 
-client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client.connect((ip,8080))
+    HEADER = 64
+    FORMAT = 'utf-8'
+    DISCONNECT_MSG = "Disconnected"
+    ip = "192.168.1.233"
 
-def send(msg):
-    message = msg.encode(FORMAT)
-    msg_length = len(message)
-    send_length = str(msg_length).encode(FORMAT)
-    send_length += b' ' * (HEADER - len(send_length))
-    client.send(send_length)
-    client.send(message)
+    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client.connect((ip,8080))
 
-##send("Hello world!")
-while True:
-    resp = (client.recv(2048).decode(FORMAT))
-    print(resp)
+    def send(msg):
+        message = msg.encode(FORMAT)
+        msg_length = len(message)
+        send_length = str(msg_length).encode(FORMAT)
+        send_length += b' ' * (HEADER - len(send_length))
+        client.send(send_length)
+        client.send(message)
 
-    if resp == "1":
-        while GPIO.input(RECEIVE)==0:
-            t1 = time.time()
-        while GPIO.input(RECEIVE)==1:
-            t2 = time.time()
+    ##send("Hello world!")
+    while True:
+        resp = (client.recv(2048).decode(FORMAT))
+        print(resp)
 
-        duration = t2 - t1
-        #print("%f" % duration1)
+        if resp == "1":
+            while GPIO.input(RECEIVE)==0:
+                t1 = time.time()
+            while GPIO.input(RECEIVE)==1:
+                t2 = time.time()
 
-        #print("%f" % dist1)
-        if(duration >= 0.038):
-            dist = prevdist
-            packet = "s1 " + str(dist)
-            send(packet)
-        else:
-            dist = duration*ss
-            packet = "s1 " + str(dist)
-            send(packet)
-            prevdist = dist
+            duration = t2 - t1
+            #print("%f" % duration1)
 
-        resp = 0
+            #print("%f" % dist1)
+            if(duration >= 0.038):
+                dist = prevdist
+                packet = "s1 " + str(dist)
+                send(packet)
+            else:
+                dist = duration*ss
+                packet = "s1 " + str(dist)
+                send(packet)
+                prevdist = dist
 
-    time.sleep(0.00001)
+            resp = 0
+
+        time.sleep(0.00001)
+except KeyboardInterrupt:
+    GPIO.cleanup()
+
+finally:
+    GPIO.cleanup()
