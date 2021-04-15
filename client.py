@@ -40,35 +40,33 @@ try:
     ##send("Hello world!")
     while True:
         resp = (client.recv(2048).decode(FORMAT))
-        #print(resp)
 
-        if resp:
-            GPIO.output(TRIGGER, GPIO.HIGH)
-            time.sleep(0.00001)
-            GPIO.output(TRIGGER, GPIO.LOW)
-            while GPIO.input(RECEIVE)==0:
-                t1 = time.time()
-            while GPIO.input(RECEIVE)==1:
-                t2 = time.time()
-            #print("PING")
+        GPIO.output(TRIGGER, GPIO.HIGH)
+        time.sleep(0.00001)
+        GPIO.output(TRIGGER, GPIO.LOW)
+        while GPIO.input(RECEIVE)==0:
+            t1 = time.time()
+        while GPIO.input(RECEIVE)==1:
+            t2 = time.time()
+        #print("PING")
 
-            duration = t2 - t1
-            print("%f time taken" % duration)
+        duration = t2 - t1
+        print("%f time taken" % duration)
 
-            #print("%f distance" % dist)
-            if(duration >= 0.038):
-                dist = prevdist
-                print("RESTORED TO PREV")
-                packet = "s1 " + str(dist)
-                send(packet)
-            else:
-                dist = duration*ss
-                print("%f distance" % dist)
-                packet = "s1 " + str(dist)
-                send(packet)
-                prevdist = dist
+        #print("%f distance" % dist)
+        if(duration >= 0.038):
+            dist = prevdist
+            print("RESTORED TO PREV")
+            packet = "s1 " + str(dist)
+            send(packet)
+        else:
+            dist = duration*ss
+            print("%f distance" % dist)
+            packet = "s1 " + str(dist)
+            send(packet)
+            prevdist = dist
 
-            resp = 0
+        resp = 0
 
         time.sleep(0.0000001)
 
