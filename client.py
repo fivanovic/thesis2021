@@ -43,7 +43,7 @@ try:
 
         if resp == "1":
             GPIO.output(TRIGGER, GPIO.HIGH)
-            time.sleep(0.0001)
+            time.sleep(0.00001)
             GPIO.output(TRIGGER, GPIO.LOW)
             while GPIO.input(RECEIVE)==0:
                 t1 = time.time()
