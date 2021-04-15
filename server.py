@@ -8,6 +8,7 @@ import localization as lx
 import matplotlib.pyplot as plt
 import pickle
 import RPi.GPIO as GPIO
+import pigpio
 
 try:
     GPIO.setmode(GPIO.BOARD)
@@ -40,6 +41,7 @@ try:
     S2DIST = "0"
     S3DIST = "0"
     S4DIST = "0"
+    pi1 = pigpio('station1')
     #start server
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((ip, 8080))
@@ -68,10 +70,10 @@ try:
             #STATIONS[0].send(FLASH.encode(FORMAT))
 
             GPIO.output(TRIGGER, GPIO.HIGH)
-            STATIONS[0].send(FLASH.encode(FORMAT))
-            for i in STATIONS:
-                i.send(FLASH.encode(FORMAT))
-            STATIONS[0].send(FLASH.encode(FORMAT))
+            pi1.gpio_trigger(11, 10, 1)
+            #for i in STATIONS:
+                #i.send(FLASH.encode(FORMAT))
+            #STATIONS[0].send(FLASH.encode(FORMAT))
             time.sleep(0.00001)
             GPIO.output(TRIGGER, GPIO.LOW)
             #threadLock.release()
