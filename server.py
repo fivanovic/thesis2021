@@ -61,7 +61,7 @@ try:
             #Hits the trigger
             FLASH = "1"
             GPIO.output(TRIGGER, GPIO.HIGH)
-            time.sleep(0.00001)
+            time.sleep(0.0001)
             GPIO.output(TRIGGER, GPIO.LOW)
             #Sends out the signal to each client
             for i in STATIONS:
