@@ -177,7 +177,8 @@ try:
 
     print(f"SERVER: started on {ip}")
 
-
+    GPIO.output(TRIGGER, GPIO.LOW)
+    print("Settling Sensor")
     start()
 
 except KeyboardInterrupt:
