@@ -175,7 +175,7 @@ try:
                 GPIO.output(TRIGGER, GPIO.LOW)
                 #threadLock.release()
                 #print(f"{FLASH}")
-                time.sleep(1)
+                time.sleep(0.00001)
 
                 FLASH = "0"
 
@@ -191,7 +191,7 @@ try:
                 #print(thread.name)
                 thread.start()
 
-            print(f"[Active Connections] {threading.activeCount() -1}")
+                print(f"[Active Connections] {threading.activeCount() -1}")
 
     print(f"SERVER: started on {ip}")
 
