@@ -166,7 +166,7 @@ try:
         global S4DIST
         server.listen()
         while True:
-            if (threading.activeCount() -1) == StationNumber:
+            if (threading.activeCount() -2) == StationNumber:
                 x = threading.Thread(target=trig, args=(conn, addr))
                 x.start()
 
