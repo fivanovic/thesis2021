@@ -77,7 +77,7 @@ try:
             for i in STATIONS:
                 i.send(FLASH.encode(FORMAT))
             #print(f"{FLASH}")
-            time.sleep(10)
+            time.sleep(1)
             FLASH = "0"
             print(S1DIST)
 
