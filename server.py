@@ -8,11 +8,14 @@ import localization as lx
 import matplotlib.pyplot as plt
 import pickle
 import RPi.GPIO as GPIO
+from Bluetin-Echo import Echo
 
 try:
     GPIO.setmode(GPIO.BOARD)
     TRIGGER = 8
+    RECEIVE = 7
     GPIO.setup(TRIGGER, GPIO.OUT)
+    GPIO.setup(RECEIVE,GPIO.IN)
 
     Station1 = np.array((100,100))
     Station2 = np.array((100,0))
@@ -24,6 +27,7 @@ try:
     StationNumber = 1
     statnum = 1
 
+    ss=343
 
     xp = 0
     yp = 0
@@ -60,9 +64,14 @@ try:
         while True:
             #Hits the trigger
             FLASH = "1"
-            GPIO.output(TRIGGER, GPIO.HIGH)
-            time.sleep(0.0001)
-            GPIO.output(TRIGGER, GPIO.LOW)
+            #GPIO.output(TRIGGER, GPIO.HIGH)
+            #time.sleep(0.0001)
+            #GPIO.output(TRIGGER, GPIO.LOW)
+
+            echo = Echo(TRIGGER,RECEIVE,ss)
+            samples = 1
+            result = echo.read('cm', samples)
+
             #Sends out the signal to each client
             for i in STATIONS:
                 i.send(FLASH.encode(FORMAT))
