@@ -66,6 +66,9 @@ try:
             #Sends out the signal to each client
             for i in STATIONS:
                 i.send(FLASH.encode(FORMAT))
+            GPIO.output(TRIGGER, GPIO.HIGH)
+            time.sleep(0.0001)
+            GPIO.output(TRIGGER, GPIO.LOW)
             #print(f"{FLASH}")
             time.sleep(3)
 
