@@ -175,7 +175,7 @@ try:
                 GPIO.output(TRIGGER, GPIO.LOW)
                 threadLock.release()
                 #print(f"{FLASH}")
-                time.sleep(0.00001)
+                time.sleep(0.1)
 
                 FLASH = "0"
 
