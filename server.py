@@ -8,7 +8,7 @@ import localization as lx
 import matplotlib.pyplot as plt
 import pickle
 import RPi.GPIO as GPIO
-import multiprocessing as mp
+from multiprocessing import Process
 import os
 
 try:
@@ -166,7 +166,7 @@ try:
         server.listen()
         while True:
             if (threading.activeCount() -1) == StationNumber:
-                x = mp.Process(target=trig, args=(STATIONS))
+                x = threading.Thread(target=trig, args=(STATIONS))
                 x.start()
 
             else:
