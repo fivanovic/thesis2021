@@ -41,7 +41,7 @@ try:
     S2DIST = "0"
     S3DIST = "0"
     S4DIST = "0"
-    pi1 = pigpio.pi('stat1')
+    pi1 = pigpio.pi('192.168.1.230')
     #start server
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((ip, 8080))
