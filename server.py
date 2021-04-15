@@ -5,8 +5,13 @@ import math
 import numpy as np
 import sympy as sym
 import localization as lx
-import matplotlib.pyplot as plt 
-import pickle 
+import matplotlib.pyplot as plt
+import pickle
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BOARD)
+TRIGGER = 8
+GPIO.setup(TRIGGER, GPIO.OUT)
 
 Station1 = np.array((100,100))
 Station2 = np.array((100,0))
@@ -15,11 +20,12 @@ Station4 = np.array((0,100))
 
 HEADER = 64
 
-StationNumber = 4
+StationNumber = 1
 statnum = 1
 
+
 xp = 0
-yp = 0 
+yp = 0
 FLASH = "0"
 STATIONS = []
 FORMAT = 'utf-8'
@@ -49,19 +55,22 @@ def trig(conn, addr):
     global Station3
     global Station4
     global xp
-    global yp 
+    global yp
     while True:
-        #Hits the trigger 
+        #Hits the trigger
         FLASH = "1"
-        #Sends out the signal to each client 
+        GPIO.output(TRIGGER, GPIO.HIGH)
+        time.sleep(0.00001)
+        GPIO.output(TRIGGER, GPIO.LOW)
+        #Sends out the signal to each client
         for i in STATIONS:
             i.send(FLASH.encode(FORMAT))
         #print(f"{FLASH}")
         time.sleep(1)
 
         FLASH = "0"
-        
-        #Multilateration from each received distance 
+
+        #Multilateration from each received distance
 
         P=lx.Project(mode='2D',solver='LSE')
 
@@ -94,7 +103,7 @@ def trig(conn, addr):
 
 
 
-#this function will handle each receiver pi, collecting received information and assigning it to the correct station 
+#this function will handle each receiver pi, collecting received information and assigning it to the correct station
 def handle_client(conn, addr):
     global FLASH
     global S1DIST
@@ -131,7 +140,7 @@ def handle_client(conn, addr):
         time.sleep(0.01)
         #conn.send("test".encode(FORMAT))
 
-#this is the main function, starting all necessary threads and listening for connections 
+#this is the main function, starting all necessary threads and listening for connections
 def start():
     global thread
     global statnum
