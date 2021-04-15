@@ -49,12 +49,12 @@ try:
                 t1 = time.time()
             while GPIO.input(RECEIVE)==1:
                 t2 = time.time()
-                print("PING")
+            print("PING")
 
             duration = t2 - t1
-            print("%f" % duration1)
+            print("%f" % duration)
 
-            print("%f" % dist1)
+            print("%f" % dist)
             if(duration >= 0.038):
                 dist = prevdist
                 packet = "s1 " + str(dist)
