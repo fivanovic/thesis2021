@@ -121,6 +121,7 @@ try:
         global S4DIST
         global STATIONS
         global thread
+        global TRIGGER
         print(f"New Connection {addr} connected")
         connected = True
         while connected:
@@ -178,16 +179,16 @@ try:
         global S4DIST
         server.listen()
         while True:
-            if (threading.activeCount() -1) == StationNumber:
 
-                conn, addr = server.accept()
-                thread = threading.Thread(target=handle_client, args=(conn, addr))
-                #thread.name = "Station" + str(statnum)
-                #statnum+=1
-                #print(f"next station will be {statnum}")
-                STATIONS.append(conn)
-                #print(thread.name)
-                thread.start()
+
+            conn, addr = server.accept()
+            thread = threading.Thread(target=handle_client, args=(conn, addr))
+            #thread.name = "Station" + str(statnum)
+            #statnum+=1
+            #print(f"next station will be {statnum}")
+            STATIONS.append(conn)
+            #print(thread.name)
+            thread.start()
 
                 print(f"[Active Connections] {threading.activeCount() -1}")
 
