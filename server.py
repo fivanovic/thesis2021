@@ -74,7 +74,6 @@ try:
             #STATIONS[0].send(FLASH.encode(FORMAT))
             time.sleep(0.00001)
             GPIO.output(TRIGGER, GPIO.LOW)
-            time.sleep(0.08)
             for i in STATIONS:
                 i.send(FLASH.encode(FORMAT))
             #print(f"{FLASH}")
