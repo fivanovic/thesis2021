@@ -2,6 +2,7 @@ import socket
 import time
 import RPi.GPIO as GPIO
 from Bluetin_Echo import Echo
+from hcrs04sensor import sensor
 
 try:
     GPIO.setmode(GPIO.BOARD)
@@ -42,11 +43,10 @@ try:
         print(resp)
 
         if resp == "1":
-            echo = Echo(TRIGGER,RECEIVE,ss)
-            samples = 1
-            echo.stop()
-            result = echo.read('cm')
-            echo.stop()
+            x=sensor.Measurement
+
+            result = x.basic_distance(TRIGGER,RECEIVE)
+
             dist = result*2
             print("%f distance" % dist)
             packet = "s1 " + str(dist)

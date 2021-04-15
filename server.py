@@ -8,7 +8,7 @@ import localization as lx
 import matplotlib.pyplot as plt
 import pickle
 import RPi.GPIO as GPIO
-from Bluetin_Echo import Echo
+from hcsr04sensor import sensor
 
 try:
     GPIO.setmode(GPIO.BOARD)
@@ -68,10 +68,8 @@ try:
             #time.sleep(0.0001)
             #GPIO.output(TRIGGER, GPIO.LOW)
 
-            echo = Echo(TRIGGER,RECEIVE,ss)
-            samples = 1
-            result = echo.read('cm')
-            echo.stop()
+            x=sensor.Measurement
+            x.basic_distance(TRIGGER,RECEIVE)
 
             #Sends out the signal to each client
             for i in STATIONS:
