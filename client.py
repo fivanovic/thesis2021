@@ -10,8 +10,8 @@ try:
     TRIGGER = 11
     RECEIVE = 13
 
-    GPIO.output(TRIGGER, GPIO.OUT)
-    GPIO.output(RECEIVE, GPIO.IN)
+    GPIO.setup(TRIGGER, GPIO.OUT)
+    GPIO.setup(RECEIVE, GPIO.IN)
 
     t1 = 0
     t2 = 0
