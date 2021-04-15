@@ -44,9 +44,9 @@ try:
         if resp == "1":
             echo = Echo(TRIGGER,RECEIVE,ss)
             samples = 1
-
+            echo.stop()
             result = echo.read('cm')
-
+            echo.stop()
             dist = result*2
             print("%f distance" % dist)
             packet = "s1 " + str(dist)

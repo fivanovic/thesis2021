@@ -71,6 +71,7 @@ try:
             echo = Echo(TRIGGER,RECEIVE,ss)
             samples = 1
             result = echo.read('cm')
+            echo.stop()
 
             #Sends out the signal to each client
             for i in STATIONS:
