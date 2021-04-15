@@ -70,34 +70,36 @@ def trig(conn, addr):
 
         FLASH = "0"
 
+        print(S1DIST)
+
         #Multilateration from each received distance
 
-        P=lx.Project(mode='2D',solver='LSE')
+        #P=lx.Project(mode='2D',solver='LSE')
 
-        P.add_anchor('Station1',(Station1[0],Station1[1]))
-        P.add_anchor('Station2',(Station2[0],Station2[1]))
-        P.add_anchor('Station3',(Station3[0],Station3[1]))
-        P.add_anchor('Station4',(Station4[0],Station4[1]))
+        #P.add_anchor('Station1',(Station1[0],Station1[1]))
+        #P.add_anchor('Station2',(Station2[0],Station2[1]))
+        #P.add_anchor('Station3',(Station3[0],Station3[1]))
+        #P.add_anchor('Station4',(Station4[0],Station4[1]))
 
-        device,label=P.add_target()
+        #device,label=P.add_target()
 
-        device.add_measure('Station1',S1DIST)
-        device.add_measure('Station2',S2DIST)
-        device.add_measure('Station3',S3DIST)
-        device.add_measure('Station4',S4DIST)
-        P.solve()
-        finalloc = device.loc
-        print(finalloc)
-        xp = finalloc.x
-        yp = finalloc.y
-        zp = finalloc.z
-        print(xp)
-        print(yp)
-        print(zp)
-        coords = [xp,yp]
-        file = open("plotvals.txt","wb")
-        pickle.dump(coords,file)
-        file.close()
+        #device.add_measure('Station1',S1DIST)
+        #device.add_measure('Station2',S2DIST)
+        #device.add_measure('Station3',S3DIST)
+        #device.add_measure('Station4',S4DIST)
+        #P.solve()
+        #finalloc = device.loc
+        #print(finalloc)
+        #xp = finalloc.x
+        #yp = finalloc.y
+        #zp = finalloc.z
+        #print(xp)
+        #print(yp)
+        #print(zp)
+        #coords = [xp,yp]
+        #file = open("plotvals.txt","wb")
+        #pickle.dump(coords,file)
+        #file.close()
         time.sleep(1)
 
 
