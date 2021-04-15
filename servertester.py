@@ -119,10 +119,29 @@ try:
         global S2DIST
         global S3DIST
         global S4DIST
+        global STATIONS
         global thread
         print(f"New Connection {addr} connected")
         connected = True
         while connected:
+            FLASH = "1"
+            threadLock.acquire()
+            #Sends out the signal to each client
+            #for i in STATIONS:
+                #i.send(FLASH.encode(FORMAT))
+            #STATIONS[0].send(FLASH.encode(FORMAT))
+
+            GPIO.output(TRIGGER, GPIO.HIGH)
+            STATIONS[0].send(FLASH.encode(FORMAT))
+            time.sleep(0.00001)
+            GPIO.output(TRIGGER, GPIO.LOW)
+
+            #print(f"{FLASH}")
+            time.sleep(1)
+            threadLock.release()
+            FLASH = "0"
+
+
             msg_length = conn.recv(HEADER).decode(FORMAT)
             if msg_length:
                 msg_length = int(msg_length)
@@ -142,7 +161,7 @@ try:
                     S4DIST = msg[3:]
                 #print(f"{addr} {msg}")
 
-                #print(f"Station 1 distance is {S1DIST}")
+                print(f"Station 1 distance is {S1DIST}")
 
 
 
@@ -160,28 +179,7 @@ try:
         server.listen()
         while True:
             if (threading.activeCount() -1) == StationNumber:
-                #threadLock.acquire()
-                #Hits the trigger
-                FLASH = "1"
 
-                #Sends out the signal to each client
-                #for i in STATIONS:
-                    #i.send(FLASH.encode(FORMAT))
-                #STATIONS[0].send(FLASH.encode(FORMAT))
-
-                GPIO.output(TRIGGER, GPIO.HIGH)
-                STATIONS[0].send(FLASH.encode(FORMAT))
-                time.sleep(0.00001)
-                GPIO.output(TRIGGER, GPIO.LOW)
-                #threadLock.release()
-                #print(f"{FLASH}")
-                time.sleep(0.1)
-
-                FLASH = "0"
-
-                print(S1DIST)
-
-            else:
                 conn, addr = server.accept()
                 thread = threading.Thread(target=handle_client, args=(conn, addr))
                 #thread.name = "Station" + str(statnum)
