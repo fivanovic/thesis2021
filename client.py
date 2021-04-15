@@ -45,14 +45,14 @@ try:
         time.sleep(0.00001)
         GPIO.output(TRIGGER, GPIO.LOW)
 
-        while GPIO.input(RECEIVE)==1:
-            t1 = time.time()
         while GPIO.input(RECEIVE)==0:
+            t1 = time.time()
+        while GPIO.input(RECEIVE)==1:
             t2 = time.time()
         #print("PING")
 
         duration = t2 - t1
-        
+
         print("%f time taken" % duration)
 
         #print("%f distance" % dist)
