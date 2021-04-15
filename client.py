@@ -40,14 +40,14 @@ while True:
     print(resp)
 
     if resp == "1":
-        while GPIO.input(RECEIVE1)==0:
+        while GPIO.input(RECEIVE)==0:
             t1 = time.time()
-        while GPIO.input(RECEIVE1)==1:
+        while GPIO.input(RECEIVE)==1:
             t2 = time.time()
 
         duration = t2 - t1
         #print("%f" % duration1)
-        
+
         #print("%f" % dist1)
         if(duration >= 0.038):
             dist = prevdist
