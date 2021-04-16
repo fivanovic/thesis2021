@@ -58,7 +58,7 @@ try:
         sendtime = str(time.time())
         time.sleep(0.00001)
         GPIO.output(TRIGGER, GPIO.LOW)
-        conn.send(sendtime.encode(FORMAT))
+        conn.send(FLASH.encode(FORMAT))
         FLASH = '0'
         time.sleep(1)
 

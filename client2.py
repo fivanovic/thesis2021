@@ -51,7 +51,7 @@ try:
         while GPIO.input(RECEIVE)==1:
             t2 = time.time()
         #print("PING")
-        t1 = float(resp)
+        #t1 = float(resp)
         duration = t2 - t1
 
         print("%f time taken" % duration)
