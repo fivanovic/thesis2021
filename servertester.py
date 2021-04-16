@@ -62,11 +62,11 @@ try:
         time.sleep(0.00001)
         GPIO.output(TRIGGER, GPIO.LOW)
         conn.send(FLASH.encode(FORMAT))
-        sendtime = time.time()
+        sendtime = time.monotonic()
 
         FLASH = '0'
         msg = conn.recv(2048).decode(FORMAT)
-        rectime = int(msg)
+        rectime = time.monotonic()
         duration = rectime - sendtime
         print("duration is %f" % duration )
         dist = duration*ss

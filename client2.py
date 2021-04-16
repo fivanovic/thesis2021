@@ -43,13 +43,13 @@ try:
         time.sleep(0.00001)
         GPIO.output(TRIGGER, GPIO.LOW)
 
-        #while GPIO.input(RECEIVE)==0:
+        while GPIO.input(RECEIVE)==0:
             #t1 = time.time()
         while GPIO.input(RECEIVE)==1:
             t2 = time.time()
 
         print(t2)
-        send(str(t2))
+        send(1)
         #print("PING")
         #t1 = float(resp)
         #duration = t2 - t1
