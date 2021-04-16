@@ -48,6 +48,7 @@ try:
         while GPIO.input(RECEIVE)==1:
             t2 = time.time()
 
+        print(t2)
         send(str(t2))
         #print("PING")
         #t1 = float(resp)
