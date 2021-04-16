@@ -43,6 +43,7 @@ try:
         resp = (client.recv(2048).decode(FORMAT))
 
         GPIO.output(TRIGGER, GPIO.HIGH)
+        print(time.time())
         time.sleep(0.00001)
         GPIO.output(TRIGGER, GPIO.LOW)
 
