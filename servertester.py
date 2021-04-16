@@ -49,7 +49,7 @@ try:
     server.bind((ip, port))
 
     server.listen(1)
-    (conn,addr) = s.accept()
+    (conn,addr) = server.accept()
     print("Connected")
 
     while True:
