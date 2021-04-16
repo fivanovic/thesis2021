@@ -29,7 +29,7 @@ try:
     StationNumber = 1
     statnum = 1
 
-    ss = 0.3048
+    ss = 343
 
     xp = 0
     yp = 0
@@ -62,7 +62,7 @@ try:
         time.sleep(0.00001)
         GPIO.output(TRIGGER, GPIO.LOW)
         conn.send(FLASH.encode(FORMAT))
-        sendtime = time.time_ns()
+        sendtime = time.time()
 
         FLASH = '0'
         msg = conn.recv(2048).decode(FORMAT)

@@ -46,7 +46,7 @@ try:
         #while GPIO.input(RECEIVE)==0:
             #t1 = time.time()
         while GPIO.input(RECEIVE)==1:
-            t2 = time.time_ns()
+            t2 = time.time()
 
         send(str(t2))
         #print("PING")
