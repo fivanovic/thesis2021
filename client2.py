@@ -49,7 +49,8 @@ try:
             t2 = time.time()
 
         print(t2)
-        send(1)
+        t2 = '1'
+        send(t2)
         #print("PING")
         #t1 = float(resp)
         #duration = t2 - t1
