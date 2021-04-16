@@ -39,16 +39,16 @@ try:
         resp = (client.recv(2048).decode(FORMAT))
 
         GPIO.output(TRIGGER, GPIO.HIGH)
-        print(time.time())
+        #print(time.time_ns())
         time.sleep(0.00001)
         GPIO.output(TRIGGER, GPIO.LOW)
 
         #while GPIO.input(RECEIVE)==0:
             #t1 = time.time()
         while GPIO.input(RECEIVE)==1:
-            t2 = time.time()
+            t2 = time.time_ns()
 
-        send("1")
+        send(str(t2))
         #print("PING")
         #t1 = float(resp)
         #duration = t2 - t1
