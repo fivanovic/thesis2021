@@ -29,7 +29,7 @@ try:
     StationNumber = 1
     statnum = 1
 
-    ss = 343
+    ss = 0.000000343
 
     xp = 0
     yp = 0
@@ -62,11 +62,11 @@ try:
         time.sleep(0.00001)
         GPIO.output(TRIGGER, GPIO.LOW)
         conn.send(FLASH.encode(FORMAT))
-        sendtime = time.monotonic()
+        sendtime = time.monotonic_ns()
 
         FLASH = '0'
         msg = conn.recv(2048).decode(FORMAT)
-        rectime = time.monotonic()
+        rectime = time.monotonic_ns()
         duration = rectime - sendtime
         print("duration is %f" % duration )
         dist = duration*ss
