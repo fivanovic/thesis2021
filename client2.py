@@ -25,9 +25,10 @@ try:
     FORMAT = 'utf-8'
     DISCONNECT_MSG = "Disconnected"
     ip = "192.168.1.233"
+    port = 8080
 
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client.connect((ip,8080))
+    client.connect((ip,port))
 
     def send(msg):
         message = msg.encode(FORMAT)
