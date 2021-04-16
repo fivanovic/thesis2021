@@ -48,8 +48,9 @@ try:
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((ip, port))
 
-    s.listen(1)
+    server.listen(1)
     (conn,addr) = s.accept()
+    print("Connected")
 
     while True:
         FLASH = "1"
