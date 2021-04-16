@@ -59,7 +59,7 @@ try:
     while True:
         FLASH = "1"
         GPIO.output(TRIGGER, GPIO.HIGH)
-        time.sleep(0.00001)
+        time.sleep(0.0001)
         GPIO.output(TRIGGER, GPIO.LOW)
         conn.send(FLASH.encode(FORMAT))
         sendtime = time.monotonic_ns()

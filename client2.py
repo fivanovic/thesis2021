@@ -40,7 +40,7 @@ try:
 
         GPIO.output(TRIGGER, GPIO.HIGH)
         #print(time.time_ns())
-        time.sleep(0.00001)
+        time.sleep(0.0001)
         GPIO.output(TRIGGER, GPIO.LOW)
 
         while GPIO.input(RECEIVE)==0:
