@@ -14,8 +14,7 @@ import os
 
 
 try:
-    factory = PiGPIOFactory(host='192.168.1.230')
-    sens = DistanceSensor(echo=27, trigger=17,pin_factory=factory,max_distance=10)
+
     GPIO.setmode(GPIO.BOARD)
     TRIGGER = 8
     GPIO.setup(TRIGGER, GPIO.OUT)
@@ -60,11 +59,9 @@ try:
     while True:
         FLASH = "1"
         GPIO.output(TRIGGER, GPIO.HIGH)
-        print(sensor.distance)
-        print(time.time())
-        sendtime = time.time()
         time.sleep(0.00001)
         GPIO.output(TRIGGER, GPIO.LOW)
+        sendtime = time.time()
         conn.send(FLASH.encode(FORMAT))
         FLASH = '0'
         msg = conn.recv(2048).decode(FORMAT)
