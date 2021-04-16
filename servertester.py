@@ -53,13 +53,13 @@ try:
     print("Connected")
 
     while True:
-        FLASH = 1
+        FLASH = "1"
         GPIO.output(TRIGGER, GPIO.HIGH)
         sendtime = str(time.time())
         time.sleep(0.00001)
         GPIO.output(TRIGGER, GPIO.LOW)
-        conn.send(FLASH)
-        FLASH = 0
+        conn.send(FLASH.encode(FORMAT))
+        FLASH = '0'
         time.sleep(1)
 
 
