@@ -18,7 +18,7 @@ try:
     duration = 0
     dist = 0
     prevdist = 0
-    ss = 343
+    ss = 0.000000343
     packet = ""
 
     HEADER = 64
@@ -44,13 +44,13 @@ try:
         GPIO.output(TRIGGER, GPIO.LOW)
 
         while GPIO.input(RECEIVE)==0:
-            t1 = time.time()
+            t1 = time.monotonic_ns()
         while GPIO.input(RECEIVE)==1:
-            t2 = time.time()
+            t2 = time.monotonic_ns()
 
-        print(t2)
-        t2 = '1'
-        send(t2)
+        duration = t2-t1
+        dist = duration*ss
+        send(str(dist))
         #print("PING")
         #t1 = float(resp)
         #duration = t2 - t1

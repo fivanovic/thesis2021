@@ -68,9 +68,9 @@ try:
         msg = conn.recv(2048).decode(FORMAT)
         rectime = time.monotonic_ns()
         duration = rectime - sendtime
-        print("duration is %f" % duration )
+        #print("duration is %f" % duration )
         dist = duration*ss
-        print("distance is %f" % dist)
+        print("distance is %f" % float(msg))
         #print("%f time taken" % duration)
         time.sleep(1)
         #print("%f distance" % dist)
