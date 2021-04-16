@@ -32,10 +32,6 @@ try:
 
     def send(msg):
         message = msg.encode(FORMAT)
-        msg_length = len(message)
-        send_length = str(msg_length).encode(FORMAT)
-        send_length += b' ' * (HEADER - len(send_length))
-        client.send(send_length)
         client.send(message)
 
     ##send("Hello world!")
@@ -51,24 +47,25 @@ try:
             t1 = time.time()
         while GPIO.input(RECEIVE)==1:
             t2 = time.time()
+        send("1")
         #print("PING")
         #t1 = float(resp)
-        duration = t2 - t1
+        #duration = t2 - t1
 
-        print("%f time taken" % duration)
+        #print("%f time taken" % duration)
 
         #print("%f distance" % dist)
-        if(duration >= 0.038):
-            dist = prevdist
-            print("RESTORED TO PREV")
-            packet = "s1 " + str(dist)
-            send(packet)
-        else:
-            dist = duration*ss
-            print("%f distance" % dist)
-            packet = "s1 " + str(dist)
-            send(packet)
-            prevdist = dist
+        #if(duration >= 0.038):
+            #dist = prevdist
+            #print("RESTORED TO PREV")
+            #packet = "s1 " + str(dist)
+            #send(packet)
+        #else:
+            #dist = duration*ss
+            #print("%f distance" % dist)
+            #packet = "s1 " + str(dist)
+            #send(packet)
+            #prevdist = dist
 
         resp = 0
 

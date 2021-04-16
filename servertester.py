@@ -26,6 +26,7 @@ try:
     StationNumber = 1
     statnum = 1
 
+    ss = 343
 
     xp = 0
     yp = 0
@@ -56,12 +57,21 @@ try:
         FLASH = "1"
         GPIO.output(TRIGGER, GPIO.HIGH)
         print(time.time())
-        sendtime = str(time.time())
+        sendtime = time.time()
         time.sleep(0.00001)
         GPIO.output(TRIGGER, GPIO.LOW)
         conn.send(FLASH.encode(FORMAT))
         FLASH = '0'
+        msg = conn.recv(2048).decode(FORMAT)
+        rectime = time.time()
+        duration = rectime - sendtime
+        print("duration is %f" % duration )
+        dist = duration*ss
+        print("distance is %f" % dist)
+        #print("%f time taken" % duration)
         time.sleep(1)
+        #print("%f distance" % dist)
+
 
 
 except KeyboardInterrupt:
