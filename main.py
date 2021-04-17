@@ -1,15 +1,24 @@
 #main code base
 import time
-import RPi.GPIO as GPIO
+import pigpio
+
+def pingup(gpio, level, tick):
+    print("echo up")
+    tick = t1
+def pingdown(gpio, level, tick):
+    print("echo down")
+    tick = t2
+
 
 try:
-    GPIO.setmode(GPIO.BOARD)
 
-    TRIGGER = 11
-    RECEIVE1 = 13
-    RECEIVE2 = 12
-    RECEIVE3 = 13
-    RECEIVE4 = 15
+    pi = pigpio.pi()
+
+
+
+    TRIGGER = 17
+    RECEIVE1 = 27
+
     t1 = 0
     t2 = 0
     duration1 = 0
@@ -18,43 +27,35 @@ try:
     duration4 = 0
     ss = 343
 
-    GPIO.setup(TRIGGER, GPIO.OUT)
-    GPIO.setup(RECEIVE1, GPIO.IN)
-    GPIO.setup(RECEIVE2, GPIO.IN)
+    pi.set_mode(TRIGGER, pigpio.OUTPUT)
+    pi.set_mode(RECEIVE1, pigpio.INPUT)
 
-    GPIO.output(TRIGGER, GPIO.LOW)
+    cb1 = pi.callback(RECEIVE1,RISING_EDGE,pingup)
+    cb2 = pi.callback(RECEIVE1,FALLING_EDGE,pingdown)
+
+    pi.write(TRIGGER, 0)
     print("Settling Sensor")
     time.sleep(2)
     while(True):
         print("Firing")
-        GPIO.output(TRIGGER, GPIO.HIGH)
-        time.sleep(0.00001)
-        GPIO.output(TRIGGER, GPIO.LOW)
+        pi.gpio_trigger(TRIGGER,10,1)
 
-        #time.sleep(0.01)
-        #print(GPIO.input(RECEIVE))
 
-        while GPIO.input(RECEIVE1)==0:
-            t1 = time.time()
-        while GPIO.input(RECEIVE1)==1:
-            t2 = time.time()
 
-        duration1 = t2 - t1
-        print("%f" % duration1)
-        dist1 = duration1*ss
-        print("%f" % dist1)
+        #duration1 = t2 - t1
+        #print("%f" % duration1)
+        #dist1 = duration1*ss
+        #print("%f" % dist1)
         time.sleep(0.5)
 
-        GPIO.output(TRIGGER, GPIO.HIGH)
-        time.sleep(0.00001)
-        GPIO.output(TRIGGER, GPIO.LOW)
 
 
 
-        if(duration1 >= 0.038):
-            print("CLEAR STATION 1")
-        else:
-            print("PING STATION 1 at %.2f" % dist1)
+
+        #if(duration1 >= 0.038):
+            #print("CLEAR STATION 1")
+        #else:
+            #print("PING STATION 1 at %.2f" % dist1)
 
 
 
