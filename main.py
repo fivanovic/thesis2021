@@ -2,12 +2,27 @@
 import time
 import pigpio
 
+t1 = 0
+t2 = 0
+float duration1 = 0
+duration1micro = 0
+float distance = 0
+duration2 = 0
+duration3 = 0
+duration4 = 0
+ss = 343
+
 def pingup(gpio, level, tick):
     print("echo up")
     tick = t1
 def pingdown(gpio, level, tick):
     print("echo down")
     tick = t2
+    duration1micro = t2-t1
+    duration1 = duration1micro/1000
+    distance = ss*duration1
+    print("distance is .2%f" % distance)
+
 
 
 
@@ -19,13 +34,6 @@ pi = pigpio.pi()
 TRIGGER = 17
 RECEIVE1 = 27
 
-t1 = 0
-t2 = 0
-duration1 = 0
-duration2 = 0
-duration3 = 0
-duration4 = 0
-ss = 343
 
 pi.set_mode(TRIGGER, pigpio.OUTPUT)
 pi.set_mode(RECEIVE1, pigpio.INPUT)
