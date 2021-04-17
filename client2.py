@@ -34,7 +34,7 @@ DISCONNECT_MSG = "Disconnected"
 ip = "192.168.1.233"
 port = 8070
 
-pi = pigpio.pi()
+pi = pigpio.pi('localhost',8080)
 pi.set_mode(TRIGGER, pigpio.OUTPUT)
 pi.set_mode(RECEIVE, pigpio.INPUT)
 
