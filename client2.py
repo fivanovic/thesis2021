@@ -28,6 +28,12 @@ def pingdown(gpio, level, tick):
     print("distance is %f" % distance)
     send(str(distance))
 
+def checkup(gpio, level, tick):
+    print("trig up")
+def checkdown(gpio, level, tick):
+    print("trig down ")
+
+
 HEADER = 64
 FORMAT = 'utf-8'
 DISCONNECT_MSG = "Disconnected"
@@ -40,6 +46,8 @@ pi.set_mode(RECEIVE, pigpio.INPUT)
 
 cb1 = pi.callback(RECEIVE,pigpio.RISING_EDGE,pingup)
 cb2 = pi.callback(RECEIVE,pigpio.FALLING_EDGE,pingdown)
+cb1 = pi.callback(TRIGGER,pigpio.RISING_EDGE,checkup)
+cb2 = pi.callback(TRIGGER,pigpio.FALLING_EDGE,checkdown)
 pi.write(TRIGGER, 0)
 print("Settling Sensor")
 time.sleep(0.5)
@@ -52,7 +60,4 @@ def send(msg):
     client.send(message)
 
 while True:
-    #resp = (client.recv(2048).decode(FORMAT))
-    #pi.gpio_trigger(TRIGGER,10,1)
-
-    time.sleep(0.000001)
+    
