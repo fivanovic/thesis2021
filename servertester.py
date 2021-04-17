@@ -71,7 +71,7 @@ pi1.write(TRIGGER,0)
 print("Settling Sensors")
 time.sleep(2)
 
-start.server
+#start.server
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((ip, port))
 
