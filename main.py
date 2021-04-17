@@ -30,8 +30,8 @@ ss = 343
 pi.set_mode(TRIGGER, pigpio.OUTPUT)
 pi.set_mode(RECEIVE1, pigpio.INPUT)
 
-cb1 = pi.callback(RECEIVE1,RISING_EDGE,pingup)
-cb2 = pi.callback(RECEIVE1,FALLING_EDGE,pingdown)
+cb1 = pi.callback(RECEIVE1,pigpio.RISING_EDGE,pingup)
+cb2 = pi.callback(RECEIVE1,pigpio.FALLING_EDGE,pingdown)
 
 pi.write(TRIGGER, 0)
 print("Settling Sensor")
