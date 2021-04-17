@@ -1,81 +1,58 @@
 import socket
 import time
-import RPi.GPIO as GPIO
 import pigpio
-from Bluetin_Echo import Echo
 
-try:
-    GPIO.setmode(GPIO.BOARD)
+TRIGGER = 17
+RECEIVE = 27
 
-    TRIGGER = 11
-    RECEIVE = 13
+t1 = 0
+t2 = 0
+duration = 0.0
+durationmicro = 0
+dist = 0.0
+prevdist = 0
+ss = 343
+packet = ""
 
-    GPIO.setup(TRIGGER, GPIO.OUT)
-    GPIO.setup(RECEIVE, GPIO.IN)
+def pingup(gpio, level, tick):
+    global t1
+    print("echo up ")
+    t1 = tick
+def pingdown(gpio, level, tick):
+    print("echo down ")
+    t2 = tick
+    durationmicro = t2-t1
+    duration = durationmicro/1000000
+    distance = ss*duration1
+    print("duration is %f" % duration1micro)
+    print("distance is %f" % distance)
+    send(str(distance))
 
-    t1 = 0
-    t2 = 0
-    duration = 0
-    dist = 0
-    prevdist = 0
-    ss = 343
-    packet = ""
+HEADER = 64
+FORMAT = 'utf-8'
+DISCONNECT_MSG = "Disconnected"
+ip = "192.168.1.233"
+port = 8080
 
-    HEADER = 64
-    FORMAT = 'utf-8'
-    DISCONNECT_MSG = "Disconnected"
-    ip = "192.168.1.233"
-    port = 8080
+pi = pigpio.pi()
+pi.set_mode(TRIGGER, pigpio.OUTPUT)
+pi.set_mode(RECEIVE, pigpio.INPUT)
 
-    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client.connect((ip,port))
+cb1 = pi.callback(RECEIVE1,pigpio.RISING_EDGE,pingup)
+cb2 = pi.callback(RECEIVE1,pigpio.FALLING_EDGE,pingdown)
+pi.write(TRIGGER, 0)
+print("Settling Sensor")
+time.sleep(0.5)
 
-    def send(msg):
-        message = msg.encode(FORMAT)
-        client.send(message)
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client.connect((ip,port))
 
-    ##send("Hello world!")
-    while True:
-        #resp = (client.recv(2048).decode(FORMAT))
+def send(msg):
+    message = msg.encode(FORMAT)
+    client.send(message)
 
-        #GPIO.output(TRIGGER, GPIO.HIGH)
-        #print(time.time_ns())
-        #time.sleep(0.0001)
-        #GPIO.output(TRIGGER, GPIO.LOW)
-
-        while GPIO.input(RECEIVE)==0:
-            t1 = time.time()
-        while GPIO.input(RECEIVE)==1:
-            t2 = time.time()
-
-        duration = t2-t1
-        dist = duration*ss
-        send(str(dist))
-        #print("PING")
-        #t1 = float(resp)
-        #duration = t2 - t1
-
-        #print("%f time taken" % duration)
-
-        #print("%f distance" % dist)
-        #if(duration >= 0.038):
-            #dist = prevdist
-            #print("RESTORED TO PREV")
-            #packet = "s1 " + str(dist)
-            #send(packet)
-        #else:
-            #dist = duration*ss
-            #print("%f distance" % dist)
-            #packet = "s1 " + str(dist)
-            #send(packet)
-            #prevdist = dist
-
-        resp = 0
-
-        time.sleep(0.0000001)
-
-except KeyboardInterrupt:
-    GPIO.cleanup()
-
-finally:
-    GPIO.cleanup()
+while True:
+    resp = (client.recv(2048).decode(FORMAT))
+    pi.gpio_trigger(TRIGGER,10,1)
+    
+    time.sleep(0.0000001)
