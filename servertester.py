@@ -34,7 +34,7 @@ CHECKER = "PING"
 CONCHECK = 0
 CONF = "CONF"
 ip = "192.168.1.233"
-port = 8070
+port = 8080
 
 S1DIST = "0"
 S2DIST = "0"
