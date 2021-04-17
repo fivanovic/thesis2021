@@ -4,9 +4,9 @@ import pigpio
 
 t1 = 0
 t2 = 0
-float duration1 = 0.0
+duration1 = 0.0
 duration1micro = 0
-float distance = 00.0
+distance = 0.0
 duration2 = 0
 duration3 = 0
 duration4 = 0
