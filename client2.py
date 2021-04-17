@@ -32,7 +32,7 @@ HEADER = 64
 FORMAT = 'utf-8'
 DISCONNECT_MSG = "Disconnected"
 ip = "192.168.1.233"
-port = 8080
+port = 8070
 
 pi = pigpio.pi()
 pi.set_mode(TRIGGER, pigpio.OUTPUT)
@@ -51,8 +51,8 @@ def send(msg):
     message = msg.encode(FORMAT)
     client.send(message)
 
-#while True:
+while True:
     #resp = (client.recv(2048).decode(FORMAT))
     #pi.gpio_trigger(TRIGGER,10,1)
 
-    time.sleep(0.0000001)
+    time.sleep(0.000001)

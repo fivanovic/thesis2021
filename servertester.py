@@ -34,7 +34,7 @@ CHECKER = "PING"
 CONCHECK = 0
 CONF = "CONF"
 ip = "192.168.1.233"
-port = 8080
+port = 8070
 
 S1DIST = "0"
 S2DIST = "0"
@@ -71,13 +71,13 @@ pi1.write(TRIGGER,0)
 print("Settling Sensors")
 time.sleep(2)
 
-#start server
-#server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#server.bind((ip, port))
+start server
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.bind((ip, port))
 
-#server.listen(1)
-#(conn,addr) = server.accept()
-#print("Connected")
+server.listen(1)
+(conn,addr) = server.accept()
+print("Connected")
 
 while True:
     FLASH = "1"
