@@ -43,7 +43,7 @@ S4DIST = "0"
 
 
 
-pi = pigpio.pi('localhost', 8080)
+pi = pigpio.pi()
 pi1 = pigpio.pi('192.168.1.230',8080)
 pi.set_mode(TRIGGER, pigpio.OUTPUT)
 pi1.set_mode(TRIGGER, pigpio.OUTPUT)
