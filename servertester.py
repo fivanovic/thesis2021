@@ -88,7 +88,7 @@ while True:
     #conn.send(FLASH.encode(FORMAT))
     #msg = conn.recv(2048).decode(FORMAT)
 
-    print(msg)
+    #print(msg)
 
     time.sleep(1)
 
