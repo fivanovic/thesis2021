@@ -23,7 +23,7 @@ def pingdown(gpio, level, tick):
     duration1 = duration1micro/1000000
     distance = ss*duration1
     print("duration is %f" % duration1micro)
-    #print("distance is %f" % distance)
+    print("distance is %f" % distance)
 
 
 
