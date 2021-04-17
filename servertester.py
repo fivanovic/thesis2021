@@ -44,7 +44,7 @@ S4DIST = "0"
 
 
 pi = pigpio.pi()
-pi1 = pigpio.pi('stat1')
+pi1 = pigpio.pi('192.168.1.230',8080)
 pi.set_mode(TRIGGER, pigpio.OUTPUT)
 pi1.set_mode(TRIGGER, pigpio.OUTPUT)
 pi1.set_mode(RECEIVE, pigpio.OUTPUT)
@@ -61,7 +61,7 @@ def pingdown(gpio, level, tick):
     distance = ss*duration
     print("duration is %f" % durationmicro)
     print("distance is %f" % distance)
-    
+
 
 cb1 = pi1.callback(RECEIVE,pigpio.RISING_EDGE,pingup)
 cb2 = pi1.callback(RECEIVE,pigpio.FALLING_EDGE,pingdown)
