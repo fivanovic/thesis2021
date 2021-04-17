@@ -36,12 +36,12 @@ try:
 
     ##send("Hello world!")
     while True:
-        resp = (client.recv(2048).decode(FORMAT))
+        #resp = (client.recv(2048).decode(FORMAT))
 
-        GPIO.output(TRIGGER, GPIO.HIGH)
+        #GPIO.output(TRIGGER, GPIO.HIGH)
         #print(time.time_ns())
-        time.sleep(0.0001)
-        GPIO.output(TRIGGER, GPIO.LOW)
+        #time.sleep(0.0001)
+        #GPIO.output(TRIGGER, GPIO.LOW)
 
         while GPIO.input(RECEIVE)==0:
             t1 = time.monotonic_ns()
