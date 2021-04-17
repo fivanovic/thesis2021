@@ -38,8 +38,8 @@ pi = pigpio.pi()
 pi.set_mode(TRIGGER, pigpio.OUTPUT)
 pi.set_mode(RECEIVE, pigpio.INPUT)
 
-cb1 = pi.callback(RECEIVE1,pigpio.RISING_EDGE,pingup)
-cb2 = pi.callback(RECEIVE1,pigpio.FALLING_EDGE,pingdown)
+cb1 = pi.callback(RECEIVE,pigpio.RISING_EDGE,pingup)
+cb2 = pi.callback(RECEIVE,pigpio.FALLING_EDGE,pingdown)
 pi.write(TRIGGER, 0)
 print("Settling Sensor")
 time.sleep(0.5)
@@ -54,5 +54,5 @@ def send(msg):
 while True:
     resp = (client.recv(2048).decode(FORMAT))
     pi.gpio_trigger(TRIGGER,10,1)
-    
+
     time.sleep(0.0000001)
