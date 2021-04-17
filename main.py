@@ -13,10 +13,10 @@ duration4 = 0
 ss = 343
 
 def pingup(gpio, level, tick):
-    print("echo up")
+    print("echo up %d" % tick)
     tick = t1
 def pingdown(gpio, level, tick):
-    print("echo down")
+    print("echo down %d" tick)
     tick = t2
     duration1micro = t2-t1
     duration1 = duration1micro/1000000
