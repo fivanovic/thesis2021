@@ -38,14 +38,14 @@ pi = pigpio.pi('localhost',8080)
 pi.set_mode(TRIGGER, pigpio.OUTPUT)
 pi.set_mode(RECEIVE, pigpio.INPUT)
 
-#cb1 = pi.callback(RECEIVE,pigpio.RISING_EDGE,pingup)
-#cb2 = pi.callback(RECEIVE,pigpio.FALLING_EDGE,pingdown)
+cb1 = pi.callback(RECEIVE,pigpio.RISING_EDGE,pingup)
+cb2 = pi.callback(RECEIVE,pigpio.FALLING_EDGE,pingdown)
 pi.write(TRIGGER, 0)
 print("Settling Sensor")
 time.sleep(0.5)
 
-#client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#client.connect((ip,port))
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client.connect((ip,port))
 
 def send(msg):
     message = msg.encode(FORMAT)

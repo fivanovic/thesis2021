@@ -63,8 +63,8 @@ def pingdown(gpio, level, tick):
     print("distance is %f" % distance)
 
 
-cb1 = pi1.callback(RECEIVE,pigpio.RISING_EDGE,pingup)
-cb2 = pi1.callback(RECEIVE,pigpio.FALLING_EDGE,pingdown)
+#cb1 = pi1.callback(RECEIVE,pigpio.RISING_EDGE,pingup)
+#cb2 = pi1.callback(RECEIVE,pigpio.FALLING_EDGE,pingdown)
 
 pi.write(TRIGGER, 0)
 pi1.write(TRIGGER,0)
