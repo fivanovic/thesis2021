@@ -5,8 +5,8 @@ import RPi.GPIO as GPIO
 try:
     GPIO.setmode(GPIO.BOARD)
 
-    TRIGGER = 8
-    RECEIVE1 = 7
+    TRIGGER = 11
+    RECEIVE1 = 13
     RECEIVE2 = 12
     RECEIVE3 = 13
     RECEIVE4 = 15
@@ -42,7 +42,7 @@ try:
         duration1 = t2 - t1
         print("%f" % duration1)
         dist1 = duration1*ss
-        #print("%f" % dist1)
+        print("%f" % dist1)
         time.sleep(0.5)
 
         GPIO.output(TRIGGER, GPIO.HIGH)
@@ -56,7 +56,7 @@ try:
         else:
             print("PING STATION 1 at %.2f" % dist1)
 
-        
+
 
 
 
