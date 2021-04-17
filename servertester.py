@@ -85,8 +85,8 @@ while True:
     pi.gpio_trigger(TRIGGER,10,1)
     pi1.gpio_trigger(TRIGGER,10,1)
 
-    conn.send(FLASH.encode(FORMAT))
-    msg = conn.recv(2048).decode(FORMAT)
+    #conn.send(FLASH.encode(FORMAT))
+    #msg = conn.recv(2048).decode(FORMAT)
 
     print(msg)
 
