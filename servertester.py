@@ -9,7 +9,8 @@ import pickle
 import pigpio
 import os
 
-TRIGGER = 14
+TRIGGER = 17
+RECEIVE = 27
 
 Station1 = np.array((100,100))
 Station2 = np.array((100,0))
@@ -40,31 +41,57 @@ S2DIST = "0"
 S3DIST = "0"
 S4DIST = "0"
 
+
+
 pi = pigpio.pi()
+pi1 = pigpio.pi('stat1')
 pi.set_mode(TRIGGER, pigpio.OUTPUT)
+pi1.set_mode(TRIGGER, pigpio.OUTPUT)
+pi1.set_mode(RECEIVE, pigpio.OUTPUT)
+
+def pingup(gpio, level, tick):
+    global t1
+    print("echo up ")
+    t1 = tick
+def pingdown(gpio, level, tick):
+    print("echo down ")
+    t2 = tick
+    durationmicro = t2-t1
+    duration = durationmicro/1000000
+    distance = ss*duration
+    print("duration is %f" % durationmicro)
+    print("distance is %f" % distance)
+    
+
+cb1 = pi1.callback(RECEIVE,pigpio.RISING_EDGE,pingup)
+cb2 = pi1.callback(RECEIVE,pigpio.FALLING_EDGE,pingdown)
+
 pi.write(TRIGGER, 0)
-print("Settling Sensor")
+pi1.write(TRIGGER,0)
+print("Settling Sensors")
 time.sleep(2)
 
 #start server
-server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.bind((ip, port))
+#server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+#server.bind((ip, port))
 
-server.listen(1)
-(conn,addr) = server.accept()
-print("Connected")
+#server.listen(1)
+#(conn,addr) = server.accept()
+#print("Connected")
 
 while True:
     FLASH = "1"
     print("Firing")
     pi.gpio_trigger(TRIGGER,10,1)
+    pi1.gpio_trigger(TRIGGER,10,1)
+
     conn.send(FLASH.encode(FORMAT))
     msg = conn.recv(2048).decode(FORMAT)
 
     print(msg)
 
     time.sleep(1)
-    
+
 
 
 
