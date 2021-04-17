@@ -4,7 +4,7 @@ import pigpio
 
 TRIGGER = 17
 RECEIVE = 27
-
+a=0
 t1 = 0
 t2 = 0
 duration = 0.0
@@ -60,4 +60,4 @@ def send(msg):
     client.send(message)
 
 while True:
-    
+    a+=1
