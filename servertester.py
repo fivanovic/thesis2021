@@ -72,7 +72,7 @@ try:
         duration = rectime - sendtime
         #print("duration is %f" % duration )
         dist = duration*ss
-        print("distance is %.2f" % float(msg))
+        print(float(msg))
         #print("%f time taken" % duration)
         time.sleep(1)
         #print("%f distance" % dist)
