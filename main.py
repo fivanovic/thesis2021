@@ -19,9 +19,9 @@ def pingdown(gpio, level, tick):
     print("echo down")
     tick = t2
     duration1micro = t2-t1
-    duration1 = duration1micro/1000
+    duration1 = duration1micro/1000000
     distance = ss*duration1
-    print("distance is .2%f" % distance)
+    print("distance is %f" % distance)
 
 
 
