@@ -42,6 +42,7 @@ S3DIST = "0"
 S4DIST = "0"
 
 pi = pigpio.pi()
+pi1 = pigpio.pi('robot', 8888)
 pi.set_mode(TRIGGER, pigpio.OUTPUT)
 
 def pingup(gpio, level, tick):
