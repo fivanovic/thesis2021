@@ -4,8 +4,8 @@ import threading
 import math
 import numpy as np
 import sympy as sym
-import localization as lx
-import matplotlib.pyplot as plt
+#import localization as lx
+#import matplotlib.pyplot as plt
 import pickle
 import RPi.GPIO as GPIO
 import os
@@ -13,7 +13,7 @@ import os
 
 try:
     GPIO.setmode(GPIO.BOARD)
-    TRIGGER = 8
+    TRIGGER = 11
     GPIO.setup(TRIGGER, GPIO.OUT)
 
     Station1 = np.array((100,100))
@@ -36,7 +36,7 @@ try:
     CHECKER = "PING"
     CONCHECK = 0
     CONF = "CONF"
-    ip = "192.168.1.233"
+    ip = "192.168.1.230"
 
     S1DIST = "0"
     S2DIST = "0"
