@@ -62,7 +62,6 @@ def pingdown(gpio, level, tick):
 #cb2 = pi1.callback(RECEIVE,pigpio.FALLING_EDGE,pingdown)
 
 pi.write(TRIGGER, 0)
-pi1.write(TRIGGER,0)
 print("Settling Sensors")
 time.sleep(2)
 
