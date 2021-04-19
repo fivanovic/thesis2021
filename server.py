@@ -73,7 +73,7 @@ try:
             GPIO.output(TRIGGER, GPIO.HIGH)
             time.sleep(0.00001)
             GPIO.output(TRIGGER, GPIO.LOW)
-
+            threadLock.release()
             #print(f"{FLASH}")
             time.sleep(1)
             FLASH = "0"
@@ -108,7 +108,7 @@ try:
             #pickle.dump(coords,file)
             #file.close()
             #time.sleep(5)
-            threadLock.release()
+
 
 
 
