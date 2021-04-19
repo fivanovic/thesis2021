@@ -33,7 +33,7 @@ DISCONNECT_MSG = "Disconnected"
 CHECKER = "PING"
 CONCHECK = 0
 CONF = "CONF"
-ip = "192.168.1.233"
+ip = "192.168.1.230"
 port = 8080
 
 S1DIST = "0"
@@ -41,13 +41,8 @@ S2DIST = "0"
 S3DIST = "0"
 S4DIST = "0"
 
-
-
-pi = pigpio.pi('localhost', 8080)
-pi1 = pigpio.pi('192.168.1.230',8080)
+pi = pigpio.pi()
 pi.set_mode(TRIGGER, pigpio.OUTPUT)
-pi1.set_mode(TRIGGER, pigpio.OUTPUT)
-pi1.set_mode(RECEIVE, pigpio.OUTPUT)
 
 def pingup(gpio, level, tick):
     global t1
@@ -83,11 +78,9 @@ while True:
     FLASH = "1"
     print("Firing")
     pi.gpio_trigger(TRIGGER,10,1)
-    pi1.gpio_trigger(TRIGGER,10,1)
+    conn.send(FLASH.encode(FORMAT))
+    msg = conn.recv(2048).decode(FORMAT)
 
-    #conn.send(FLASH.encode(FORMAT))
-    #msg = conn.recv(2048).decode(FORMAT)
-
-    #print(msg)
+    print(msg)
 
     time.sleep(1)

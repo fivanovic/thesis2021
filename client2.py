@@ -37,10 +37,10 @@ def checkdown(gpio, level, tick):
 HEADER = 64
 FORMAT = 'utf-8'
 DISCONNECT_MSG = "Disconnected"
-ip = "192.168.1.233"
+ip = "192.168.1.230"
 port = 8080
 
-pi = pigpio.pi('localhost',8080)
+pi = pigpio.pi()
 pi.set_mode(TRIGGER, pigpio.OUTPUT)
 pi.set_mode(RECEIVE, pigpio.INPUT)
 
@@ -60,4 +60,5 @@ def send(msg):
     client.send(message)
 
 while True:
-    a+=1
+    resp = (client.recv(2048).decode(FORMAT))
+    pi.gpio_trigger(TRIGGER,10,1)
