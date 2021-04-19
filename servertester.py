@@ -33,7 +33,7 @@ DISCONNECT_MSG = "Disconnected"
 CHECKER = "PING"
 CONCHECK = 0
 CONF = "CONF"
-ip = "192.168.1.233"
+ip = "192.168.1.230"
 port = 8080
 
 S1DIST = "0"
@@ -43,8 +43,8 @@ S4DIST = "0"
 
 
 
-pi = pigpio.pi()
-pi1 = pigpio.pi('192.168.1.230',8080)
+pi = pigpio.pi('localhost', 8080)
+pi1 = pigpio.pi('192.168.1.233',8080)
 pi.set_mode(TRIGGER, pigpio.OUTPUT)
 pi1.set_mode(TRIGGER, pigpio.OUTPUT)
 pi1.set_mode(RECEIVE, pigpio.OUTPUT)
