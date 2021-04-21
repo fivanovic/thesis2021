@@ -27,6 +27,7 @@ def pingdown(gpio, level, tick):
     print("echo down ")
     #t2 = tick
     t2 = c.request(NTP_SERVER)
+    t2 = t2.tx_time
     #durationmicro = t2-t1
     #duration = durationmicro/1000000
     #duration = t2 - t1
