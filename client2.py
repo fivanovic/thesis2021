@@ -5,7 +5,7 @@ import ntplib
 
 TRIGGER = 17
 RECEIVE = 27
-a=1
+a=0
 t1 = 0
 t2 = 0
 duration = 0.0
@@ -24,7 +24,6 @@ def pingup(gpio, level, tick):
     #t1 = tick
     #t1 = c.request(NTP_SERVER)
 def pingdown(gpio, level, tick):
-    a = 0
     print("echo down ")
     #t2 = tick
     t2 = c.request(NTP_SERVER)
@@ -36,7 +35,6 @@ def pingdown(gpio, level, tick):
     #print("duration is %f" % durationmicro)
     #print("distance is %f" % distance)
     send(str(t2))
-    a=1
 
 def checkup(gpio, level, tick):
     print("trig up")
@@ -56,8 +54,7 @@ pi.set_mode(RECEIVE, pigpio.INPUT)
 
 cb1 = pi.callback(RECEIVE,pigpio.RISING_EDGE,pingup)
 cb2 = pi.callback(RECEIVE,pigpio.FALLING_EDGE,pingdown)
-#cb3 = pi.callback(TRIGGER,pigpio.RISING_EDGE,checkup)
-#cb4 = pi.callback(TRIGGER,pigpio.FALLING_EDGE,checkdown)
+
 pi.write(TRIGGER, 0)
 print("Settling Sensor")
 time.sleep(0.5)
@@ -69,7 +66,7 @@ def send(msg):
     message = msg.encode(FORMAT)
     client.send(message)
 
-while a == 1:
+while True:
     resp = (client.recv(2048).decode(FORMAT))
     pi.gpio_trigger(TRIGGER,10,1)
     #a+=1
