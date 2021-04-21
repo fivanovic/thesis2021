@@ -77,4 +77,4 @@ while True:
 
     #print(msg)
 
-    time.sleep(0.0001)
+    time.sleep(0.1)
