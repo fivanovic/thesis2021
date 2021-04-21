@@ -48,23 +48,6 @@ pi = pigpio.pi()
 pi1 = pigpio.pi('192.168.1.233', 8888)
 pi.set_mode(TRIGGER, pigpio.OUTPUT)
 
-def pingup(gpio, level, tick):
-    global t1
-    print("echo up ")
-    t1 = tick
-def pingdown(gpio, level, tick):
-    print("echo down ")
-    t2 = tick
-    durationmicro = t2-t1
-    duration = durationmicro/1000000
-    distance = ss*duration
-    print("duration is %f" % durationmicro)
-    print("distance is %f" % distance)
-
-
-#cb1 = pi1.callback(RECEIVE,pigpio.RISING_EDGE,pingup)
-#cb2 = pi1.callback(RECEIVE,pigpio.FALLING_EDGE,pingdown)
-
 pi.write(TRIGGER, 0)
 print("Settling Sensors")
 time.sleep(2)
@@ -85,9 +68,13 @@ while True:
     #pi1.gpio_trigger(TRIGGER,10,1)
     conn.send(FLASH.encode(FORMAT))
     t1 = c.request(NTP_SERVER)
+    t1 = t1.tx_time
     msg = conn.recv(2048).decode(FORMAT)
+    t2 = int(msg)
+    duration = t2 - t1
+    print(duration)
 
 
-    print(msg)
+    #print(msg)
 
     time.sleep(1)
