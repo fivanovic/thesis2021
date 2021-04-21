@@ -65,6 +65,6 @@ def send(msg):
     client.send(message)
 
 while True:
-    #resp = (client.recv(2048).decode(FORMAT))
-    #pi.gpio_trigger(TRIGGER,10,1)
-    a+=1
+    resp = (client.recv(2048).decode(FORMAT))
+    pi.gpio_trigger(TRIGGER,10,1)
+    #a+=1
