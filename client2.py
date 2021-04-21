@@ -5,7 +5,7 @@ import ntplib
 
 TRIGGER = 17
 RECEIVE = 27
-a=0
+a=1
 t1 = 0
 t2 = 0
 duration = 0.0
