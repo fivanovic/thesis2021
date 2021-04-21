@@ -36,7 +36,7 @@ try:
     CHECKER = "PING"
     CONCHECK = 0
     CONF = "CONF"
-    ip = "192.168.1.230"
+    ip = "192.168.1.233"
 
     S1DIST = "0"
     S2DIST = "0"
