@@ -10,8 +10,8 @@ import pigpio
 import os
 import ntplib
 
-#NTP_SERVER:'dk.pool.ntp.org'
-
+NTP_SERVER:'dk.pool.ntp.org'
+c = ntplib.NTPClient()
 TRIGGER = 17
 RECEIVE = 27
 
@@ -81,9 +81,12 @@ while True:
     FLASH = "1"
     print("Firing")
     pi.gpio_trigger(TRIGGER,10,1)
+
     #pi1.gpio_trigger(TRIGGER,10,1)
     conn.send(FLASH.encode(FORMAT))
+    t1 = c.request(NTP_SERVER)
     msg = conn.recv(2048).decode(FORMAT)
+
 
     print(msg)
 
