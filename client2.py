@@ -24,6 +24,7 @@ def pingup(gpio, level, tick):
     #t1 = tick
     #t1 = c.request(NTP_SERVER)
 def pingdown(gpio, level, tick):
+    a = 0
     print("echo down ")
     #t2 = tick
     t2 = c.request(NTP_SERVER)
@@ -35,6 +36,7 @@ def pingdown(gpio, level, tick):
     #print("duration is %f" % durationmicro)
     #print("distance is %f" % distance)
     send(str(t2))
+    a=1
 
 def checkup(gpio, level, tick):
     print("trig up")
@@ -67,7 +69,7 @@ def send(msg):
     message = msg.encode(FORMAT)
     client.send(message)
 
-while True:
+while a == 1:
     resp = (client.recv(2048).decode(FORMAT))
     pi.gpio_trigger(TRIGGER,10,1)
     #a+=1
