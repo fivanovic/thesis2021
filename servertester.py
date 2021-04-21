@@ -10,7 +10,7 @@ import pigpio
 import os
 import ntplib
 
-NTP_SERVER:'dk.pool.ntp.org'
+NTP_SERVER = 'dk.pool.ntp.org'
 c = ntplib.NTPClient()
 TRIGGER = 17
 RECEIVE = 27

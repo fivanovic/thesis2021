@@ -15,7 +15,7 @@ prevdist = 0
 ss = 343
 packet = ""
 
-NTP_SERVER:'dk.pool.ntp.org'
+NTP_SERVER = 'dk.pool.ntp.org'
 c = ntplib.NTPClient()
 
 def pingup(gpio, level, tick):
