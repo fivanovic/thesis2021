@@ -70,7 +70,7 @@ while True:
     t1 = c.request(NTP_SERVER)
     t1 = t1.tx_time
     msg = conn.recv(2048).decode(FORMAT)
-    t2 = int(msg)
+    t2 = float(msg)
     duration = t2 - t1
     print(duration)
 
