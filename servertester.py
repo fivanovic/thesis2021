@@ -36,7 +36,7 @@ DISCONNECT_MSG = "Disconnected"
 CHECKER = "PING"
 CONCHECK = 0
 CONF = "CONF"
-ip = "192.168.1.230"
+ip = "192.168.1.233"
 port = 8080
 
 S1DIST = "0"
