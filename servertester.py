@@ -8,6 +8,9 @@ import sympy as sym
 import pickle
 import pigpio
 import os
+import ntplib
+
+NTP_SERVER:'dk.pool.ntp.org'
 
 TRIGGER = 17
 RECEIVE = 27
@@ -33,7 +36,7 @@ DISCONNECT_MSG = "Disconnected"
 CHECKER = "PING"
 CONCHECK = 0
 CONF = "CONF"
-ip = "192.168.1.230"
+ip = "192.168.1.233"
 port = 8080
 
 S1DIST = "0"
@@ -79,6 +82,7 @@ while True:
     print("Firing")
     pi.gpio_trigger(TRIGGER,10,1)
     pi1.gpio_trigger(TRIGGER,10,1)
+
     #conn.send(FLASH.encode(FORMAT))
     msg = conn.recv(2048).decode(FORMAT)
 

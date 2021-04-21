@@ -1,6 +1,7 @@
 import socket
 import time
 import pigpio
+import ntplib
 
 TRIGGER = 17
 RECEIVE = 27
@@ -14,15 +15,19 @@ prevdist = 0
 ss = 343
 packet = ""
 
+NTP_SERVER:'dk.pool.ntp.org'
+c = ntplib.NTPClient()
+
 def pingup(gpio, level, tick):
     global t1
     print("echo up ")
-    t1 = tick
+    t1 = c.request(NTP_SERVER)
 def pingdown(gpio, level, tick):
     print("echo down ")
-    t2 = tick
-    durationmicro = t2-t1
-    duration = durationmicro/1000000
+    t2 = c.request(NTP_SERVER)
+    #durationmicro = t2-t1
+    #duration = durationmicro/1000000
+    duration = t2 - t1
     distance = ss*duration
     print("duration is %f" % durationmicro)
     print("distance is %f" % distance)
@@ -37,7 +42,7 @@ def checkdown(gpio, level, tick):
 HEADER = 64
 FORMAT = 'utf-8'
 DISCONNECT_MSG = "Disconnected"
-ip = "192.168.1.230"
+ip = "192.168.1.233"
 port = 8080
 
 pi = pigpio.pi()

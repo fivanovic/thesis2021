@@ -20,5 +20,6 @@ device.add_measure('Station1',70.71)
 device.add_measure('Station2',70.71)
 device.add_measure('Station3',70.71)
 device.add_measure('Station4',70.71)
+
 P.solve()
 print(device.loc)
