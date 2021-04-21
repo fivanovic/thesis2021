@@ -73,8 +73,4 @@ while True:
     t2 = float(msg)
     duration = t2 - t1
     print(duration)
-
-
-    #print(msg)
-
-    time.sleep(0.1)
+    time.sleep(1)
