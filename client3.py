@@ -15,6 +15,10 @@ prevdist = 0
 ss = 343
 packet = ""
 
+pi = pigpio.pi()
+pi.set_mode(TRIGGER, pigpio.OUTPUT)
+pi.set_mode(RECEIVE, pigpio.INPUT)
+
 def pingup(gpio, level, tick):
     global t1
     print("echo up ")
