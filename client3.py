@@ -34,22 +34,14 @@ def pingdown(gpio, level, tick):
     #duration = t2 - t1
     distance = ss*duration
     print("duration is %f" % duration)
-    #print("distance is %f" % distance)
+    print("distance is %f" % distance)
     #send(str(t2))
 
 
-#cb1 = pi.callback(RECEIVE,pigpio.RISING_EDGE,pingup)
-#cb2 = pi.callback(RECEIVE,pigpio.FALLING_EDGE,pingdown)
+cb1 = pi.callback(RECEIVE,pigpio.RISING_EDGE,pingup)
+cb2 = pi.callback(RECEIVE,pigpio.FALLING_EDGE,pingdown)
 
 while True:
     #resp = (client.recv(2048).decode(FORMAT))
     pi.gpio_trigger(TRIGGER,10,1)
-    while pi.read(RECEIVE) ==  0:
-        t1 = time.time()
-
-    while pi.read(RECEIVE) == 1:
-        t2 = time.time()
-
-    duration = t2 - t1
-    print(duration)
     time.sleep(1)
