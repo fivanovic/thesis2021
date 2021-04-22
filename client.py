@@ -62,7 +62,7 @@ try:
         #if(duration >= 0.038):
             #dist = prevdist
             #print("RESTORED TO PREV")
-            packet = "s1 " + str(t2)
+            #packet = "s1 " + str(t2)
             #send(packet)
         #else:
             #dist = duration*ss
