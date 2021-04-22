@@ -40,3 +40,4 @@ cb2 = pi.callback(RECEIVE,pigpio.FALLING_EDGE,pingdown)
 while True:
     #resp = (client.recv(2048).decode(FORMAT))
     pi.gpio_trigger(TRIGGER,10,1)
+    time.sleep(1)
