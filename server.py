@@ -71,6 +71,7 @@ try:
             GPIO.output(TRIGGER, GPIO.HIGH)
             time.sleep(0.00001)
             GPIO.output(TRIGGER, GPIO.LOW)
+            t1=time.time()
             for i in STATIONS:
                 i.send(FLASH.encode(FORMAT))
 
@@ -78,7 +79,8 @@ try:
             #print(f"{FLASH}")
             time.sleep(1)
             FLASH = "0"
-            print(S1DIST)
+            tester = float(S1DIST) - t1
+            print(tester)
 
             #Multilateration from each received distance
 
