@@ -31,7 +31,7 @@ def pingdown(gpio, level, tick):
     #t2 = t2.tx_time
     durationmicro = t2-t1
     duration = durationmicro/1000000
-    duration = t2 - t1
+    #duration = t2 - t1
     distance = ss*duration
     print("duration is %f" % duration)
     #print("distance is %f" % distance)
