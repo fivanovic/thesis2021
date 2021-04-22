@@ -45,7 +45,7 @@ S3DIST = "0"
 S4DIST = "0"
 
 pi = pigpio.pi()
-pi1 = pigpio.pi('192.168.1.233', 8888)
+pi1 = pigpio.pi('192.168.1.226', 8888)
 pi.set_mode(TRIGGER, pigpio.OUTPUT)
 
 pi.write(TRIGGER, 0)
