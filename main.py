@@ -29,7 +29,7 @@ def pingdown(gpio, level, tick):
 
 
 
-pi = pigpio.pi('localhost', 8080)
+pi = pigpio.pi()
 
 
 
