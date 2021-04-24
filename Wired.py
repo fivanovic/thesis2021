@@ -93,17 +93,17 @@ def pingdown4(gpio, level, tick):
     print("4 distance is %f" % S4DIST)
 
 
-cb1up = pi.callback(RECEIVE1.pigpio.RISING_EDGE,pingup1)
-cb1down = pi.callback(RECEIVE1.pigpio.FALLING_EDGE,pingdown1)
+cb1up = pi.callback(RECEIVE1,pigpio.RISING_EDGE,pingup1)
+cb1down = pi.callback(RECEIVE1,pigpio.FALLING_EDGE,pingdown1)
 
-cb2up = pi.callback(RECEIVE2.pigpio.RISING_EDGE,pingup2)
-cb2down = pi.callback(RECEIVE2.pigpio.FALLING_EDGE,pingdown2)
+cb2up = pi.callback(RECEIVE2,pigpio.RISING_EDGE,pingup2)
+cb2down = pi.callback(RECEIVE2,pigpio.FALLING_EDGE,pingdown2)
 
-cb3up = pi.callback(RECEIVE3.pigpio.RISING_EDGE,pingup3)
-cb3down = pi.callback(RECEIVE3.pigpio.FALLING_EDGE,pingdown3)
+cb3up = pi.callback(RECEIVE3,pigpio.RISING_EDGE,pingup3)
+cb3down = pi.callback(RECEIVE3,pigpio.FALLING_EDGE,pingdown3)
 
-cb4up = pi.callback(RECEIVE4.pigpio.RISING_EDGE,pingup4)
-cb4down = pi.callback(RECEIVE4.pigpio.FALLING_EDGE,pingdown4)
+cb4up = pi.callback(RECEIVE4,pigpio.RISING_EDGE,pingup4)
+cb4down = pi.callback(RECEIVE4,pigpio.FALLING_EDGE,pingdown4)
 
 def trig():
     global TRIGGER
