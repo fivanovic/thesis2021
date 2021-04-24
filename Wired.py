@@ -22,6 +22,7 @@ S1DIST = 0
 S2DIST = 0
 S3DIST = 0
 S4DIST = 0
+ss = 343
 
 pi = pigpio.pi()
 TRIGGER = 17
