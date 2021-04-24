@@ -105,7 +105,7 @@ cb3down = pi.callback(RECEIVE3,pigpio.FALLING_EDGE,pingdown3)
 cb4up = pi.callback(RECEIVE4,pigpio.RISING_EDGE,pingup4)
 cb4down = pi.callback(RECEIVE4,pigpio.FALLING_EDGE,pingdown4)
 
-def trig():
-    global TRIGGER
+while True:
+    print("Pinging")
     pi.gpio_trigger(TRIGGER,10,1)
     time.sleep(1)
