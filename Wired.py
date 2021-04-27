@@ -26,6 +26,7 @@ ss = 343
 
 pi = pigpio.pi()
 TRIGGER = 17
+trig2 = 21
 RECEIVE1 = 27
 RECEIVE2 = 22
 RECEIVE3 = 18
@@ -109,4 +110,5 @@ cb4down = pi.callback(RECEIVE4,pigpio.FALLING_EDGE,pingdown4)
 while True:
     print("Pinging")
     pi.gpio_trigger(TRIGGER,10,1)
+    pi.gpio_trigger(trig2,10,1)
     time.sleep(1)
