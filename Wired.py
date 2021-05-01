@@ -26,7 +26,6 @@ ss = 343
 
 pi = pigpio.pi()
 TRIGGER = 17
-trig2 = 21
 RECEIVE1 = 27
 RECEIVE2 = 22
 RECEIVE3 = 18
