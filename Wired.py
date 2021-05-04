@@ -66,7 +66,7 @@ def pingdown1(gpio, level, tick):
     s1flip = 1
     print("Ping at 1")
     #print(" 1 duration is %f" % duration1)
-    #print("1 distance is %f" % S1DIST)
+    print("1 distance is %f" % S1DIST)
 
 def pingup2(gpio, level, tick):
     global t21
@@ -81,7 +81,7 @@ def pingdown2(gpio, level, tick):
     s2flip = 1
     print("Ping at 2")
     #print(" 2 duration is %f" % duration2)
-    #print(" 2 distance is %f" % S2DIST)
+    print(" 2 distance is %f" % S2DIST)
 
 def pingup3(gpio, level, tick):
     global t31
@@ -98,7 +98,7 @@ def pingdown3(gpio, level, tick):
     s3flip = 1
     print("Ping at 3")
     #print("3 duration is %f" % duration3)
-    #print("3 distance is %f" % S3DIST)
+    print("3 distance is %f" % S3DIST)
 
 def pingup4(gpio, level, tick):
     global t41
@@ -115,7 +115,7 @@ def pingdown4(gpio, level, tick):
     s4flip = 1
     print("Ping at 4")
     #print("4 duration is %f" % duration4)
-    #print("4 distance is %f" % S4DIST)
+    print("4 distance is %f" % S4DIST)
 
 
 cb1up = pi.callback(RECEIVE1,pigpio.RISING_EDGE,pingup1)
