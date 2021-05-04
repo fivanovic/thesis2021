@@ -18,7 +18,7 @@ device,label=P.add_target()
 
 device.add_measure('Station1',5.79)
 device.add_measure('Station2',6.36)
-device.add_measure('Station3',3.57)
+#device.add_measure('Station3',3.57)
 device.add_measure('Station4',4.44)
 
 P.solve()
