@@ -15,14 +15,14 @@ Station2 = np.array((1.4,0))
 Station3 = np.array((0,1.1))
 Station4 = np.array((1.4,1.1))
 
-P=lx.Project(mode='2D',solver='LSE')
+#P=lx.Project(mode='2D',solver='LSE')
 
 P.add_anchor('Station1',(Station1[0],Station1[1]))
 P.add_anchor('Station2',(Station2[0],Station2[1]))
 P.add_anchor('Station3',(Station3[0],Station3[1]))
 P.add_anchor('Station4',(Station4[0],Station4[1]))
 
-device,label=P.add_target()
+#device,label=P.add_target()
 
 t1 = 0
 t2 = 0
@@ -134,6 +134,8 @@ while True:
     print("Pinging")
     pi.gpio_trigger(TRIGGER,10,1)
     time.sleep(1)
+    P=lx.Project(mode='2D',solver='LSE')
+    device,label=P.add_target()
     if s1flip == 1:
         device.add_measure('Station1',S1DIST)
         s1flip = 0
