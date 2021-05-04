@@ -17,10 +17,7 @@ Station4 = np.array((1.4,1.1))
 
 #P=lx.Project(mode='2D',solver='LSE')
 
-P.add_anchor('Station1',(Station1[0],Station1[1]))
-P.add_anchor('Station2',(Station2[0],Station2[1]))
-P.add_anchor('Station3',(Station3[0],Station3[1]))
-P.add_anchor('Station4',(Station4[0],Station4[1]))
+
 
 #device,label=P.add_target()
 
@@ -135,6 +132,10 @@ while True:
     pi.gpio_trigger(TRIGGER,10,1)
     time.sleep(1)
     P=lx.Project(mode='2D',solver='LSE')
+    P.add_anchor('Station1',(Station1[0],Station1[1]))
+    P.add_anchor('Station2',(Station2[0],Station2[1]))
+    P.add_anchor('Station3',(Station3[0],Station3[1]))
+    P.add_anchor('Station4',(Station4[0],Station4[1]))
     device,label=P.add_target()
     if s1flip == 1:
         device.add_measure('Station1',S1DIST)
