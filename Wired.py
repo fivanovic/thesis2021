@@ -147,4 +147,4 @@ while True:
         device.add_measure('Station4',S4DIST)
         s4flip = 0
     P.solve()
-    print(f"Device is at {,device.loc}")
+    print(f"Device is at {device.loc}")
