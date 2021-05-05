@@ -151,3 +151,11 @@ while True:
         s4flip = 0
     P.solve()
     print(f"Device is at {device.loc}")
+    finalloc = device.loc
+    xp = finalloc.x
+    yp = finalloc.y
+    coords = [xp,yp]
+    file = open("plotvals.txt","wb")
+    pickle.dump(coords,file)
+    file.close()
+    time.sleep(1)

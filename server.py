@@ -73,7 +73,7 @@ try:
             GPIO.output(TRIGGER, GPIO.LOW)
             for i in STATIONS:
                 i.send(FLASH.encode(FORMAT))
-            
+
             threadLock.release()
             #print(f"{FLASH}")
             time.sleep(1)
