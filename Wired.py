@@ -154,7 +154,7 @@ while True:
     finalloc = device.loc
     xp = finalloc.x
     yp = finalloc.y
-    print("Device is at %.2f,%.2f", % xp, yp )
+    print("Device is at",xp,",",yp)
     coords = [xp,yp]
     file = open("plotvals.txt","wb")
     pickle.dump(coords,file)
