@@ -13,7 +13,7 @@ import ntplib
 Station1 = np.array((0,0))
 Station2 = np.array((3,0))
 Station3 = np.array((0,3))
-Station4 = np.array(3,3))
+Station4 = np.array((3,3))
 
 #P=lx.Project(mode='2D',solver='LSE')
 
