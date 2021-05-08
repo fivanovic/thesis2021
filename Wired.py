@@ -150,10 +150,11 @@ while True:
         device.add_measure('Station4',S4DIST)
         s4flip = 0
     P.solve()
-    print(f"Device is at {device.loc}")
+    #print(f"Device is at {device.loc}")
     finalloc = device.loc
     xp = finalloc.x
     yp = finalloc.y
+    print("Device is at %.2f,%.2f", % xp, yp )
     coords = [xp,yp]
     file = open("plotvals.txt","wb")
     pickle.dump(coords,file)
