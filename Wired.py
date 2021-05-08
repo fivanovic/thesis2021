@@ -10,10 +10,10 @@ import pigpio
 import os
 import ntplib
 
-Station1 = np.array((0,0.55))
-Station2 = np.array((1.4,0.55))
-Station3 = np.array((0,1.1))
-Station4 = np.array((0.7,1.1))
+Station1 = np.array((0,0))
+Station2 = np.array((3,0))
+Station3 = np.array((0,3))
+Station4 = np.array(3,3))
 
 #P=lx.Project(mode='2D',solver='LSE')
 
