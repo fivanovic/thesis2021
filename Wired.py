@@ -152,8 +152,8 @@ while True:
     P.solve()
     #print(f"Device is at {device.loc}")
     finalloc = device.loc
-    xp = finalloc.x
-    yp = finalloc.y
+    xp = round(finalloc.x,2)
+    yp = round(finalloc.y,2)
     print("Device is at",xp,",",yp)
     coords = [xp,yp]
     file = open("plotvals.txt","wb")
