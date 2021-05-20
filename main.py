@@ -56,7 +56,7 @@ while(True):
     #print("%f" % duration1)
     #dist1 = duration1*ss
     #print("%f" % dist1)
-    time.sleep(0.5)
+    time.sleep(3)
 
 
 
