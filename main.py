@@ -14,15 +14,15 @@ ss = 343
 
 def pingup(gpio, level, tick):
     global t1
-    print("echo up ")
+    #print("echo up ")
     t1 = tick
 def pingdown(gpio, level, tick):
-    print("echo down ")
+    #print("echo down ")
     t2 = tick
     duration1micro = t2-t1
     duration1 = duration1micro/1000000
     distance = ss*duration1
-    print("duration is %f" % duration1micro)
+    #print("duration is %f" % duration1micro)
     print("distance is %f" % distance)
 
 
