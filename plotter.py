@@ -10,6 +10,7 @@ import pickle
 plt.style.use('seaborn-whitegrid')
 
 while(True):
+    #The values are taken from the save location and plotted onto a graph
     vals = pickle.load(open('plotvals.txt','rb'))
     x = vals[0]
     y = vals[1]
