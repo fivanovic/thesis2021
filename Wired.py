@@ -15,12 +15,6 @@ Station2 = np.array((3,0))
 Station3 = np.array((0,3))
 Station4 = np.array((3,3))
 
-#P=lx.Project(mode='2D',solver='LSE')
-
-
-
-#device,label=P.add_target()
-
 t1 = 0
 t2 = 0
 
@@ -50,19 +44,16 @@ pi.set_mode(RECEIVE4, pigpio.INPUT)
 
 def pingup1(gpio, level, tick):
     global t11
-    #print("echo up ")
     t11 = tick
 def pingdown1(gpio, level, tick):
     global S1DIST
     global s1flip
-    #print("echo down ")
     t12 = tick
     durationmicro1 = t12-t11
     duration1 = durationmicro1/1000000
     S1DIST = ss*duration1
     s1flip = 1
     print("Ping at 1")
-    #print(" 1 duration is %f" % duration1)
     print("1 distance is %f" % S1DIST)
 
 def pingup2(gpio, level, tick):
@@ -77,41 +68,34 @@ def pingdown2(gpio, level, tick):
     S2DIST = ss*duration2
     s2flip = 1
     print("Ping at 2")
-    #print(" 2 duration is %f" % duration2)
     print(" 2 distance is %f" % S2DIST)
 
 def pingup3(gpio, level, tick):
     global t31
-    #print("echo up ")
     t31 = tick
 def pingdown3(gpio, level, tick):
     global S3DIST
     global s3flip
-    #print("echo down ")
     t32 = tick
     durationmicro3 = t32-t31
     duration3= durationmicro3/1000000
     S3DIST = ss*duration3
     s3flip = 1
     print("Ping at 3")
-    #print("3 duration is %f" % duration3)
     print("3 distance is %f" % S3DIST)
 
 def pingup4(gpio, level, tick):
     global t41
-    #print("echo up ")
     t41 = tick
 def pingdown4(gpio, level, tick):
     global S4DIST
     global s4flip
-    #print("echo down ")
     t42 = tick
     durationmicro4 = t42-t41
     duration4= durationmicro4/1000000
     S4DIST = ss*duration4
     s4flip = 1
     print("Ping at 4")
-    #print("4 duration is %f" % duration4)
     print("4 distance is %f" % S4DIST)
 
 
@@ -150,7 +134,6 @@ while True:
         device.add_measure('Station4',S4DIST)
         s4flip = 0
     P.solve()
-    #print(f"Device is at {device.loc}")
     finalloc = device.loc
     xp = round(finalloc.x,2)
     yp = round(finalloc.y,2)
