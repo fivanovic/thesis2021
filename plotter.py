@@ -18,5 +18,5 @@ while(True):
     plt.xlim(0,1.5)
     plt.ylim(0,1.5)
     plt.draw()
-    plt.pause(0.5)
+    plt.pause(0.01)
     plt.clf()
