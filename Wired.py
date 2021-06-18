@@ -12,9 +12,9 @@ import ntplib
 
 #Defining the locations of each receiver station
 Station1 = np.array((0,0))
-Station2 = np.array((1.5,0))
-Station3 = np.array((0,1.5))
-Station4 = np.array((1.5,1.5))
+Station2 = np.array((3.9,0))
+Station3 = np.array((0,3.2))
+Station4 = np.array((3.9,3.2))
 
 #Instantiating all needed variables
 t1 = 0
