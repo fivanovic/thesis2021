@@ -15,7 +15,7 @@ while(True):
     x = vals[0]
     y = vals[1]
     plt.scatter(x,y)
-    plt.xlim(0,3.2)
+    plt.xlim(0,3.9)
     plt.ylim(0,3.2)
     plt.draw()
     plt.pause(0.01)
